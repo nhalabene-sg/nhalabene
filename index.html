@@ -11,7 +11,7 @@
   <script>
     window.NH_CONFIG = window.NH_CONFIG || {};
     /* ▼▼▼ COLLEZ L’URL ICI ▼▼▼ */
-    window.NH_CONFIG.API_URL = '';
+    window.NH_CONFIG.API_URL = 'https://script.google.com/macros/s/AKfycbweSuMTw5uoGT1jiS9ZROTVFbCPf5SOTs_L2381pKN3s_OEz4mnd4jS91jDUSgNxrNS9g/exec';
     /* ▲▲▲ COLLEZ L’URL ICI ▲▲▲ */
     // Exemple :
     // window.NH_CONFIG.API_URL = 'https://script.google.com/macros/s/XXXX/exec';
@@ -153,7 +153,10 @@
       letter-spacing: .04em;
       min-height: 44px;
     }
-    .nav-brand img { width: 36px; height: 36px; border-radius: 8px; flex-shrink: 0; }
+    .nav-brand svg.logo-icon {
+      width: 36px; height: 36px; border-radius: 8px; flex-shrink: 0; display: block;
+      box-shadow: 0 2px 8px rgba(0,0,0,.35);
+    }
     .nav-brand span { white-space: nowrap; }
     .nav-tools {
       display: none;
@@ -259,9 +262,9 @@
       margin-bottom: 1.75rem;
       animation: rise .9s ease both;
     }
-    .brand-mark img {
-      width: min(72vw, 280px); height: auto;
-      filter: drop-shadow(0 12px 30px rgba(0,0,0,.35));
+    .brand-mark svg.logo-hero {
+      width: min(88vw, 340px); height: auto; display: block;
+      filter: drop-shadow(0 10px 28px rgba(0,0,0,.45));
     }
     .hero h1 {
       font-family: var(--font-display);
@@ -971,7 +974,7 @@
       }
       .hero-route { display: none; }
       .brand-mark { margin-bottom: 1.2rem; }
-      .brand-mark img { width: min(78vw, 240px); }
+      .brand-mark svg.logo-hero { width: min(88vw, 280px); }
       .hero h1 {
         font-size: clamp(1.85rem, 8.2vw, 2.55rem);
         max-width: 16ch;
@@ -1052,7 +1055,7 @@
 
     @media (max-width: 420px) {
       .nav-brand span { display: none; }
-      .nav-brand img { width: 34px; height: 34px; }
+      .nav-brand svg.logo-icon { width: 34px; height: 34px; }
       .lang button {
         min-width: 34px;
         min-height: 36px;
@@ -1087,7 +1090,12 @@
   <header class="nav" id="nav">
     <div class="nav-inner">
       <a class="nav-brand" href="#top" aria-label="Nhalabene">
-        <img src="assets/favicon.svg" alt="" width="36" height="36" />
+        <svg class="logo-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="32" height="32" rx="6" fill="#162033" stroke="#C9A84C" stroke-width="1"/>
+          <line x1="7.7" y1="25" x2="7.7" y2="8.3" stroke="#C9A84C" stroke-width="2" stroke-linecap="round"/>
+          <line x1="7.7" y1="8.3" x2="24.3" y2="25" stroke="#C9A84C" stroke-width="2" stroke-linecap="round"/>
+          <line x1="24.3" y1="25" x2="24.3" y2="8.3" stroke="#C9A84C" stroke-width="2" stroke-linecap="round"/>
+        </svg>
         <span>Nhalabene</span>
       </a>
       <div class="nav-tools" aria-label="Idioma e menu">
@@ -1134,7 +1142,15 @@
       </svg>
       <div class="wrap hero-content">
         <div class="brand-mark">
-          <img src="assets/logo_horizontal.svg" alt="Nhalabene" />
+          <svg class="logo-hero" viewBox="0 0 480 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Nhalabene TPE">
+            <rect x="18" y="18" width="84" height="84" rx="16" fill="#162033" stroke="#C9A84C" stroke-width="1.5"/>
+            <line x1="20.2" y1="65.5" x2="20.2" y2="21.8" stroke="#C9A84C" stroke-width="6.5" stroke-linecap="round"/>
+            <line x1="20.2" y1="21.8" x2="63.8" y2="65.5" stroke="#C9A84C" stroke-width="6.5" stroke-linecap="round"/>
+            <line x1="63.8" y1="65.5" x2="63.8" y2="21.8" stroke="#C9A84C" stroke-width="6.5" stroke-linecap="round"/>
+            <line x1="20.2" y1="70.6" x2="63.8" y2="70.6" stroke="#E8C56A" stroke-width="2.5" stroke-linecap="round" opacity="0.55"/>
+            <text x="124" y="64" font-family="Georgia, 'Times New Roman', serif" font-size="38" font-weight="700" fill="#E8C56A" letter-spacing="2">Nhalabene</text>
+            <text x="126" y="90" font-family="Georgia, 'Times New Roman', serif" font-size="16" font-weight="400" fill="#C9A84C" letter-spacing="5">TPE</text>
+          </svg>
         </div>
         <h1 data-i18n="hero.title">Os transfers do seu hotel, controlados de ponta a ponta</h1>
         <p class="hero-lead" data-i18n="hero.lead">Uma solução clara para acolher, organizar e valorizar cada trajeto do hóspede — sem perder o controlo nem a imagem do seu estabelecimento.</p>
