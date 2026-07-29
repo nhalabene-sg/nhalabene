@@ -25,6 +25,9 @@ SITE WEB/
 ├── privacy.html            # Politique de confidentialité (RGPD)
 ├── terms.html              # Conditions d’utilisation
 ├── 404.html                # Page d’erreur GitHub Pages
+├── favicon.ico             # Icône navigateur (ICO)
+├── manifest.webmanifest    # PWA / installation mobile
+├── sw.js                   # Service worker
 ├── robots.txt
 ├── sitemap.xml
 ├── .nojekyll               # GitHub Pages (fichiers sans Jekyll)
@@ -38,7 +41,7 @@ SITE WEB/
 │   ├── config.js           # URL API Apps Script
 │   ├── site-api.js         # Tracking + formulaire
 │   ├── i18n-extra.js       # Traductions FAQ / RGPD / etc.
-│   ├── favicon.svg         # Icône navigateur
+│   ├── favicon.svg         # Icône SVG
 │   ├── icon_192.svg        # Apple touch icon
 │   └── icon_512.svg        # Open Graph / partage
 └── apps-script/
