@@ -1,0 +1,14 @@
+# Ignore OS / editor junk (config.js is versioned with placeholder URL)
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+.idea/
+.vscode/
+*.zip
+.env
+.env.*
+node_modules/
+.vercel/
+dist/
+
