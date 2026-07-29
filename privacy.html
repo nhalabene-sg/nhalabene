@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="robots" content="noindex,follow" />
+  <title>Política de Privacidade — Nhalabene</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root { --navy:#0B1623; --gold:#C9A84C; --paper:#F7F4EC; --ink:#121A24; --muted:#5C6B7A; }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Outfit,sans-serif;background:var(--paper);color:var(--ink);line-height:1.65;padding:1.25rem}
+    .wrap{max-width:720px;margin:0 auto;padding:1rem 0 3rem}
+    a{color:#8B6420}
+    header{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-bottom:2rem;flex-wrap:wrap}
+    .brand{font-family:"Cormorant Garamond",Georgia,serif;font-size:1.5rem;color:var(--gold);background:var(--navy);padding:.55rem 1rem;text-decoration:none}
+    h1{font-family:"Cormorant Garamond",Georgia,serif;font-size:2rem;margin:0 0 .5rem}
+    .meta{color:var(--muted);font-size:.9rem;margin-bottom:2rem}
+    h2{font-size:1.15rem;margin:1.75rem 0 .6rem;color:var(--navy)}
+    p,li{margin-bottom:.75rem;font-weight:300}
+    ul{padding-left:1.2rem}
+    .lang{display:flex;gap:.35rem}
+    .lang button{border:1px solid #C9A84C;background:#fff;padding:.35rem .55rem;cursor:pointer;font-size:.75rem;font-weight:600}
+    .lang button.active{background:var(--gold);color:var(--navy)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <a class="brand" href="index.html">Nhalabene</a>
+      <div class="lang" role="group">
+        <button type="button" class="active" data-lang="pt">PT</button>
+        <button type="button" data-lang="en">EN</button>
+        <button type="button" data-lang="fr">FR</button>
+        <button type="button" data-lang="es">ES</button>
+      </div>
+    </header>
+    <h1 data-i="t">Política de Privacidade</h1>
+    <p class="meta" data-i="u">Última atualização: 28 de julho de 2026 · Contacto: nhalabene@gmail.com</p>
+    <div id="content"></div>
+    <p style="margin-top:2rem"><a href="index.html" data-i="back">← Voltar ao site</a> · <a href="terms.html" data-i="terms">Termos de utilização</a></p>
+  </div>
+  <script>
+    const T = {
+      pt: {
+        t:'Política de Privacidade', u:'Última atualização: 28 de julho de 2026 · Contacto: nhalabene@gmail.com', back:'← Voltar ao site', terms:'Termos de utilização',
+        html:`<h2>1. Responsável</h2><p>Nhalabene (Lisboa, Portugal) — <a href="mailto:nhalabene@gmail.com">nhalabene@gmail.com</a> · +351 920 433 761.</p>
+        <h2>2. Dados recolhidos</h2><p>Quando utiliza o formulário de contacto, podemos recolher: nome, hotel/estabelecimento, email, telefone, assunto, mensagem, idioma, dados técnicos de visita (página, referrer, dispositivo) e consentimento.</p>
+        <h2>3. Finalidades</h2><ul><li>Responder aos pedidos e marcar demonstrações</li><li>Gerir a relação comercial</li><li>Analisar visitas ao site (estatísticas)</li><li>Cumprir obrigações legais</li></ul>
+        <h2>4. Base legal</h2><p>Consentimento (formulário) e interesse legítimo (analytics agregados e segurança).</p>
+        <h2>5. Conservação</h2><p>Os contactos são guardados numa base Google Sheets sob controlo da Nhalabene, pelo tempo necessário ao acompanhamento comercial e legal, salvo pedido de apagamento.</p>
+        <h2>6. Destinatários</h2><p>Nhalabene e prestadores técnicos necessários (Google Workspace / Apps Script / Sheets). Não vendemos os seus dados.</p>
+        <h2>7. Os seus direitos (RGPD)</h2><p>Acesso, retificação, apagamento, limitação, oposição e portabilidade. Para exercer: <a href="mailto:nhalabene@gmail.com">nhalabene@gmail.com</a>. Pode também apresentar reclamação junto da CNPD (Portugal) ou autoridade competente.</p>
+        <h2>8. Cookies / armazenamento local</h2><p>Utilizamos armazenamento local apenas para idioma e identificador de sessão de analytics. Sem cookies publicitários de terceiros.</p>`
+      },
+      en: {
+        t:'Privacy Policy', u:'Last updated: 28 July 2026 · Contact: nhalabene@gmail.com', back:'← Back to site', terms:'Terms of use',
+        html:`<h2>1. Controller</h2><p>Nhalabene (Lisbon, Portugal) — <a href="mailto:nhalabene@gmail.com">nhalabene@gmail.com</a> · +351 920 433 761.</p>
+        <h2>2. Data collected</h2><p>Via the contact form we may collect: name, hotel, email, phone, subject, message, language, visit technical data and consent.</p>
+        <h2>3. Purposes</h2><ul><li>Respond to enquiries and arrange demos</li><li>Manage the commercial relationship</li><li>Analyse site visits</li><li>Meet legal obligations</li></ul>
+        <h2>4. Legal basis</h2><p>Consent (form) and legitimate interest (aggregated analytics and security).</p>
+        <h2>5. Retention</h2><p>Contacts are stored in a Google Sheet controlled by Nhalabene for as long as needed for follow-up, unless deletion is requested.</p>
+        <h2>6. Recipients</h2><p>Nhalabene and necessary technical providers (Google Workspace). We do not sell your data.</p>
+        <h2>7. Your rights (GDPR)</h2><p>Access, rectification, erasure, restriction, objection and portability via <a href="mailto:nhalabene@gmail.com">nhalabene@gmail.com</a>.</p>
+        <h2>8. Local storage</h2><p>Used for language preference and analytics session ID only. No third-party ad cookies.</p>`
+      },
+      fr: {
+        t:'Politique de confidentialité', u:'Dernière mise à jour : 28 juillet 2026 · Contact : nhalabene@gmail.com', back:'← Retour au site', terms:'Conditions d’utilisation',
+        html:`<h2>1. Responsable</h2><p>Nhalabene (Lisbonne, Portugal) — <a href="mailto:nhalabene@gmail.com">nhalabene@gmail.com</a> · +351 920 433 761.</p>
+        <h2>2. Données collectées</h2><p>Via le formulaire : nom, hôtel, email, téléphone, sujet, message, langue, données techniques de visite et consentement.</p>
+        <h2>3. Finalités</h2><ul><li>Répondre aux demandes et planifier des démos</li><li>Gérer la relation commerciale</li><li>Analyser les visites</li><li>Obligations légales</li></ul>
+        <h2>4. Base légale</h2><p>Consentement (formulaire) et intérêt légitime (analytics agrégés et sécurité).</p>
+        <h2>5. Conservation</h2><p>Contacts stockés dans un Google Sheet contrôlé par Nhalabene, le temps nécessaire au suivi, sauf demande d’effacement.</p>
+        <h2>6. Destinataires</h2><p>Nhalabene et prestataires techniques nécessaires (Google Workspace). Pas de vente de données.</p>
+        <h2>7. Vos droits (RGPD)</h2><p>Accès, rectification, effacement, limitation, opposition, portabilité : <a href="mailto:nhalabene@gmail.com">nhalabene@gmail.com</a>.</p>
+        <h2>8. Stockage local</h2><p>Uniquement langue et identifiant de session analytics. Pas de cookies publicitaires tiers.</p>`
+      },
+      es: {
+        t:'Política de privacidad', u:'Última actualización: 28 de julio de 2026 · Contacto: nhalabene@gmail.com', back:'← Volver al sitio', terms:'Términos de uso',
+        html:`<h2>1. Responsable</h2><p>Nhalabene (Lisboa, Portugal) — <a href="mailto:nhalabene@gmail.com">nhalabene@gmail.com</a> · +351 920 433 761.</p>
+        <h2>2. Datos recogidos</h2><p>Mediante el formulario: nombre, hotel, email, teléfono, asunto, mensaje, idioma, datos técnicos de visita y consentimiento.</p>
+        <h2>3. Finalidades</h2><ul><li>Responder solicitudes y concertar demos</li><li>Gestionar la relación comercial</li><li>Analizar visitas</li><li>Obligaciones legales</li></ul>
+        <h2>4. Base legal</h2><p>Consentimiento (formulario) e interés legítimo (analytics agregados y seguridad).</p>
+        <h2>5. Conservación</h2><p>Contactos en una hoja Google Sheets controlada por Nhalabene, el tiempo necesario, salvo solicitud de borrado.</p>
+        <h2>6. Destinatarios</h2><p>Nhalabene y proveedores técnicos necesarios. No vendemos datos.</p>
+        <h2>7. Sus derechos (RGPD)</h2><p>Acceso, rectificación, supresión, limitación, oposición y portabilidad: <a href="mailto:nhalabene@gmail.com">nhalabene@gmail.com</a>.</p>
+        <h2>8. Almacenamiento local</h2><p>Solo idioma e ID de sesión analytics. Sin cookies publicitarias de terceros.</p>`
+      }
+    };
+    let lang = localStorage.getItem('nhalabene-lang') || 'pt';
+    function apply() {
+      const d = T[lang] || T.pt;
+      document.documentElement.lang = lang === 'pt' ? 'pt-PT' : lang;
+      document.title = d.t + ' — Nhalabene';
+      document.querySelector('[data-i="t"]').textContent = d.t;
+      document.querySelector('[data-i="u"]').textContent = d.u;
+      document.querySelector('[data-i="back"]').textContent = d.back;
+      document.querySelector('[data-i="terms"]').textContent = d.terms;
+      document.getElementById('content').innerHTML = d.html;
+      document.querySelectorAll('.lang button').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+    }
+    document.querySelectorAll('.lang button').forEach(b => b.addEventListener('click', () => { lang = b.dataset.lang; localStorage.setItem('nhalabene-lang', lang); apply(); }));
+    apply();
+  </script>
+</body>
+</html>

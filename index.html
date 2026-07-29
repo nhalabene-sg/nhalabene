@@ -1,0 +1,2293 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8" />
+  <!--
+    ╔════════════════════════════════════════════════════════════╗
+    ║  COLLEZ VOTRE URL API APPS SCRIPT CI-DESSOUS             ║
+    ║  (entre les guillemets, l’URL qui finit par /exec)       ║
+    ╚════════════════════════════════════════════════════════════╝
+  -->
+  <script>
+    window.NH_CONFIG = window.NH_CONFIG || {};
+    /* ▼▼▼ COLLEZ L’URL ICI ▼▼▼ */
+    window.NH_CONFIG.API_URL = '';
+    /* ▲▲▲ COLLEZ L’URL ICI ▲▲▲ */
+    // Exemple :
+    // window.NH_CONFIG.API_URL = 'https://script.google.com/macros/s/XXXX/exec';
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="description" content="Nhalabene — Solução profissional de gestão de transfers para hotéis. Formulário, receção e administração. Contacto: nhalabene@gmail.com" />
+  <meta name="theme-color" content="#0B1623" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="pt_PT" />
+  <meta property="og:locale:alternate" content="en_GB" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:site_name" content="Nhalabene" />
+  <meta property="og:title" content="Nhalabene — Gestão de transfers para hotéis" />
+  <meta property="og:description" content="Formulário, Staff Receção e Administração para profissionalizar os transfers do seu hotel." />
+  <meta property="og:image" content="assets/icon_512.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Nhalabene — Gestão de transfers para hotéis" />
+  <meta name="twitter:description" content="Solução completa de transfers para hotéis — Formulário, Staff e Admin." />
+  <link rel="canonical" href="index.html" />
+  <title>Nhalabene — Gestão de transfers para hotéis</title>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Nhalabene",
+    "email": "nhalabene@gmail.com",
+    "telephone": "+351920433761",
+    "url": "https://nhalabene.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Lisboa",
+      "addressCountry": "PT"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+351920433761",
+      "contactType": "sales",
+      "email": "nhalabene@gmail.com",
+      "availableLanguage": ["pt", "en", "fr", "es"]
+    }
+  }
+  </script>
+  <script type="application/ld+json" id="faqLdJson">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": []
+  }
+  </script>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="apple-touch-icon" href="assets/icon_192.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --gold: #C9A84C;
+      --gold-light: #E8C56A;
+      --gold-deep: #8B6420;
+      --navy: #0B1623;
+      --slate: #162033;
+      --cream: #F5EDD3;
+      --paper: #F7F4EC;
+      --ink: #121A24;
+      --muted: #5C6B7A;
+      --line: rgba(11, 22, 35, 0.12);
+      --white: #FFFFFF;
+      --ok: #2F6B4F;
+      --shadow: 0 24px 60px rgba(11, 22, 35, 0.14);
+      --radius: 4px;
+      --max: 1120px;
+      --nav-h: 72px;
+      --safe-top: env(safe-area-inset-top, 0px);
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+      --safe-left: env(safe-area-inset-left, 0px);
+      --safe-right: env(safe-area-inset-right, 0px);
+      --bottom-bar-h: 0px;
+      --font-display: "Cormorant Garamond", Georgia, serif;
+      --font-body: "Outfit", sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+    body {
+      font-family: var(--font-body);
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.6;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      padding-bottom: var(--bottom-bar-h);
+    }
+    body.menu-open { overflow: hidden; touch-action: none; }
+    img { max-width: 100%; display: block; height: auto; }
+    a { color: inherit; text-decoration: none; }
+    button, input, select, textarea { font: inherit; }
+    .wrap {
+      width: min(100% - 2.5rem, var(--max));
+      margin-inline: auto;
+      padding-left: var(--safe-left);
+      padding-right: var(--safe-right);
+    }
+
+    /* ——— Nav ——— */
+    .nav {
+      position: fixed; inset: 0 0 auto; z-index: 100;
+      height: calc(var(--nav-h) + var(--safe-top));
+      padding-top: var(--safe-top);
+      display: flex; align-items: center;
+      background: rgba(11, 22, 35, 0.72);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(201, 168, 76, 0.18);
+      transition: background .3s ease;
+    }
+    .nav.scrolled { background: rgba(11, 22, 35, 0.94); }
+    .nav-inner {
+      width: min(100% - 1.25rem, var(--max));
+      margin-inline: auto;
+      display: flex; align-items: center; justify-content: space-between; gap: .75rem;
+      padding-left: var(--safe-left);
+      padding-right: var(--safe-right);
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: .65rem;
+      color: var(--gold);
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: .04em;
+      min-height: 44px;
+    }
+    .nav-brand img { width: 36px; height: 36px; border-radius: 8px; flex-shrink: 0; }
+    .nav-brand span { white-space: nowrap; }
+    .nav-tools {
+      display: none;
+      align-items: center;
+      gap: .55rem;
+      margin-left: auto;
+    }
+    .nav-links { display: flex; align-items: center; gap: 1.6rem; }
+    .nav-links a {
+      color: rgba(245, 237, 211, 0.82);
+      font-size: .88rem;
+      font-weight: 500;
+      letter-spacing: .02em;
+      transition: color .2s;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .lang {
+      display: inline-flex; border: 1px solid rgba(201, 168, 76, 0.35); border-radius: 999px; overflow: hidden;
+      flex-shrink: 0;
+    }
+    .lang button {
+      border: 0; background: transparent; color: rgba(245, 237, 211, 0.7);
+      padding: .45rem .55rem; cursor: pointer; font-size: .72rem; font-weight: 600; letter-spacing: .04em;
+      min-width: 40px; min-height: 40px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .lang button.active { background: var(--gold); color: var(--navy); }
+    .nav-cta {
+      background: var(--gold); color: var(--navy);
+      padding: .55rem 1.1rem; border-radius: 999px;
+      font-size: .82rem; font-weight: 600; letter-spacing: .03em;
+      transition: transform .2s, background .2s;
+      min-height: 44px;
+    }
+    .nav-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
+    .nav-toggle {
+      display: none;
+      background: rgba(201,168,76,.12);
+      border: 1px solid rgba(201,168,76,.35);
+      color: var(--gold);
+      cursor: pointer;
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      align-items: center; justify-content: center;
+      flex-shrink: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .nav-toggle svg { width: 22px; height: 22px; }
+    .nav-toggle .icon-close { display: none; }
+    .nav.open .nav-toggle .icon-menu { display: none; }
+    .nav.open .nav-toggle .icon-close { display: block; }
+    .nav-backdrop {
+      position: fixed; inset: 0; z-index: 90;
+      background: rgba(7,14,22,.55);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .25s ease;
+    }
+    body.menu-open .nav-backdrop {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* ——— Hero ——— */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: grid;
+      align-items: end;
+      padding: calc(var(--nav-h) + var(--safe-top) + 2rem) 0 4.5rem;
+      color: var(--cream);
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(11,22,35,.35) 0%, rgba(11,22,35,.78) 55%, rgba(11,22,35,.96) 100%),
+        radial-gradient(ellipse 80% 60% at 70% 20%, rgba(201,168,76,.22), transparent 55%),
+        radial-gradient(ellipse 50% 40% at 15% 80%, rgba(22,32,51,.9), transparent 60%),
+        linear-gradient(135deg, #0B1623 0%, #162033 42%, #1a2740 100%);
+    }
+    .hero-pattern {
+      position: absolute; inset: 0; pointer-events: none; opacity: .35;
+      background-image:
+        linear-gradient(rgba(201,168,76,.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,.06) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: linear-gradient(180deg, #000 0%, transparent 85%);
+    }
+    .hero-route {
+      position: absolute; right: -4%; top: 18%; width: min(52vw, 620px); height: auto;
+      opacity: .55; pointer-events: none;
+      animation: floatRoute 12s ease-in-out infinite;
+    }
+    @keyframes floatRoute {
+      0%, 100% { transform: translateY(0) rotate(-2deg); }
+      50% { transform: translateY(-18px) rotate(1deg); }
+    }
+    .hero-content { position: relative; z-index: 2; }
+    .brand-mark {
+      display: flex; align-items: center; gap: 1rem;
+      margin-bottom: 1.75rem;
+      animation: rise .9s ease both;
+    }
+    .brand-mark img {
+      width: min(72vw, 280px); height: auto;
+      filter: drop-shadow(0 12px 30px rgba(0,0,0,.35));
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+      font-weight: 600;
+      line-height: 1.08;
+      letter-spacing: -.01em;
+      max-width: 14ch;
+      color: var(--cream);
+      margin-bottom: 1.1rem;
+      animation: rise .9s .12s ease both;
+    }
+    .hero-lead {
+      font-size: clamp(1rem, 1.6vw, 1.15rem);
+      font-weight: 300;
+      color: rgba(245, 237, 211, 0.82);
+      max-width: 38ch;
+      margin-bottom: 2rem;
+      animation: rise .9s .22s ease both;
+    }
+    .hero-actions {
+      display: flex; flex-wrap: wrap; gap: .85rem;
+      animation: rise .9s .32s ease both;
+    }
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(22px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+      padding: .95rem 1.45rem;
+      border-radius: 999px;
+      font-size: .92rem; font-weight: 600;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: transform .2s, background .2s, border-color .2s, color .2s;
+      min-height: 48px;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn:active { transform: scale(.98); }
+    .btn-gold { background: var(--gold); color: var(--navy); }
+    .btn-gold:hover { background: var(--gold-light); }
+    .btn-ghost {
+      background: transparent; color: var(--cream);
+      border-color: rgba(245, 237, 211, 0.35);
+    }
+    .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+    .btn-navy { background: var(--navy); color: var(--gold); }
+    .btn-navy:hover { background: var(--slate); }
+
+    /* ——— Sections ——— */
+    section { padding: 5.5rem 0; scroll-margin-top: calc(var(--nav-h) + var(--safe-top) + .75rem); }
+    .section-kicker {
+      display: inline-block;
+      font-size: .72rem; font-weight: 600;
+      letter-spacing: .22em; text-transform: uppercase;
+      color: var(--gold-deep);
+      margin-bottom: .85rem;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.8vw, 3rem);
+      font-weight: 600;
+      line-height: 1.15;
+      color: var(--navy);
+      max-width: 18ch;
+      margin-bottom: 1rem;
+    }
+    .section-lead {
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 52ch;
+      font-weight: 300;
+    }
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* ——— Problem ——— */
+    .problem {
+      background:
+        linear-gradient(180deg, var(--white), var(--paper));
+    }
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 3.5rem;
+      align-items: center;
+      margin-top: 2.5rem;
+    }
+    .problem-list { display: grid; gap: 1.25rem; }
+    .problem-item {
+      padding-left: 1.25rem;
+      border-left: 2px solid var(--gold);
+    }
+    .problem-item h3 {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 600;
+      margin-bottom: .3rem;
+      color: var(--navy);
+    }
+    .problem-item p { color: var(--muted); font-size: .95rem; }
+    .problem-panel {
+      background: var(--navy);
+      color: var(--cream);
+      padding: 2.4rem 2rem;
+      position: relative;
+      overflow: hidden;
+      min-height: 320px;
+      display: flex; flex-direction: column; justify-content: flex-end;
+    }
+    .problem-panel::before {
+      content: "";
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(circle at 85% 15%, rgba(201,168,76,.28), transparent 40%),
+        linear-gradient(160deg, var(--slate), var(--navy));
+    }
+    .problem-panel > * { position: relative; z-index: 1; }
+    .problem-panel .quote {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      font-style: italic;
+      line-height: 1.25;
+      margin-bottom: 1rem;
+      color: var(--gold-light);
+    }
+    .problem-panel .quote-sub { color: rgba(245,237,211,.7); font-size: .92rem; font-weight: 300; }
+
+    /* ——— Apps ——— */
+    .apps { background: var(--navy); color: var(--cream); }
+    .apps .section-kicker { color: var(--gold); }
+    .apps .section-title { color: var(--cream); max-width: 22ch; }
+    .apps .section-lead { color: rgba(245,237,211,.72); }
+    .apps-flow {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      margin-top: 3rem;
+      border-top: 1px solid rgba(201,168,76,.25);
+    }
+    .app-block {
+      padding: 2.2rem 1.6rem 2.4rem;
+      border-right: 1px solid rgba(201,168,76,.25);
+      transition: background .3s;
+    }
+    .app-block:last-child { border-right: 0; }
+    .app-block:hover { background: rgba(201,168,76,.06); }
+    .app-num {
+      font-family: var(--font-display);
+      font-size: 2.6rem;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+    .app-block h3 {
+      font-family: var(--font-display);
+      font-size: 1.7rem;
+      font-weight: 600;
+      margin-bottom: .35rem;
+    }
+    .app-role {
+      font-size: .78rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+    .app-block p {
+      color: rgba(245,237,211,.75);
+      font-size: .95rem;
+      font-weight: 300;
+      margin-bottom: 1.2rem;
+    }
+    .app-block ul {
+      list-style: none;
+      display: grid; gap: .55rem;
+    }
+    .app-block li {
+      font-size: .9rem;
+      color: rgba(245,237,211,.88);
+      padding-left: 1.1rem;
+      position: relative;
+    }
+    .app-block li::before {
+      content: "";
+      position: absolute; left: 0; top: .55em;
+      width: .45rem; height: .45rem;
+      background: var(--gold);
+      border-radius: 50%;
+    }
+
+    /* ——— Marketing ——— */
+    .marketing { background: var(--paper); }
+    .marketing-intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: end;
+      margin-bottom: 3rem;
+    }
+    .marketing-pillars {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem 2rem;
+    }
+    .pillar {
+      padding-top: 1.4rem;
+      border-top: 1px solid var(--line);
+    }
+    .pillar h3 {
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: .45rem;
+    }
+    .pillar p { color: var(--muted); font-size: .95rem; font-weight: 300; }
+
+    /* ——— Benefits strip ——— */
+    .benefits {
+      background:
+        linear-gradient(120deg, var(--navy) 0%, var(--slate) 100%);
+      color: var(--cream);
+      padding: 4rem 0;
+    }
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+    .benefit h3 {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      color: var(--gold);
+      margin-bottom: .4rem;
+    }
+    .benefit p { font-size: .9rem; color: rgba(245,237,211,.75); font-weight: 300; }
+
+    /* ——— Audience ——— */
+    .audience { background: var(--white); }
+    .audience-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 2.5rem;
+    }
+    .audience-item h3 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: var(--navy);
+      margin-bottom: .5rem;
+    }
+    .audience-item p { color: var(--muted); font-size: .95rem; font-weight: 300; }
+
+    /* ——— Steps ——— */
+    .steps { background: var(--paper); }
+    .steps-list {
+      counter-reset: step;
+      display: grid;
+      gap: 0;
+      margin-top: 2.5rem;
+      max-width: 720px;
+    }
+    .step {
+      display: grid;
+      grid-template-columns: 4.5rem 1fr;
+      gap: 1.25rem;
+      padding: 1.4rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .step:last-child { border-bottom: 0; }
+    .step-n {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      color: var(--gold-deep);
+      line-height: 1;
+    }
+    .step h3 {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      margin-bottom: .25rem;
+      color: var(--navy);
+    }
+    .step p { color: var(--muted); font-size: .95rem; font-weight: 300; }
+
+    /* ——— Contact ——— */
+    .contact {
+      background: var(--navy);
+      color: var(--cream);
+      position: relative;
+      overflow: hidden;
+    }
+    .contact::before {
+      content: "";
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 10% 0%, rgba(201,168,76,.18), transparent 45%);
+      pointer-events: none;
+    }
+    .contact .section-kicker { color: var(--gold); }
+    .contact .section-title { color: var(--cream); }
+    .contact .section-lead { color: rgba(245,237,211,.72); }
+    .contact-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 3rem;
+      margin-top: 2.5rem;
+      align-items: start;
+    }
+    .contact-info { display: grid; gap: 1.5rem; }
+    .contact-line h4 {
+      font-size: .72rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: .35rem;
+      font-weight: 600;
+    }
+    .contact-line a, .contact-line p {
+      font-size: 1.15rem;
+      color: var(--cream);
+      font-weight: 400;
+    }
+    .contact-line a:hover { color: var(--gold); }
+    .contact-form {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(201,168,76,.28);
+      padding: 1.75rem;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .fg { display: grid; gap: .4rem; margin-bottom: 1rem; }
+    .fg label {
+      font-size: .75rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(245,237,211,.65);
+      font-weight: 500;
+    }
+    .fg input, .fg select, .fg textarea {
+      width: 100%;
+      background: rgba(11,22,35,.55);
+      border: 1px solid rgba(201,168,76,.28);
+      color: var(--cream);
+      padding: .95rem 1rem;
+      border-radius: var(--radius);
+      outline: none;
+      transition: border-color .2s;
+      min-height: 48px;
+      font-size: 16px; /* évite le zoom iOS */
+    }
+    .fg input:focus, .fg select:focus, .fg textarea:focus {
+      border-color: var(--gold);
+    }
+    .fg textarea { min-height: 140px; resize: vertical; }
+    .fg select option { background: var(--navy); color: var(--cream); }
+    .form-note {
+      font-size: .82rem;
+      color: rgba(245,237,211,.55);
+      margin-top: .85rem;
+      font-weight: 300;
+    }
+    .form-success {
+      display: none;
+      margin-top: 1rem;
+      padding: .9rem 1rem;
+      background: rgba(47,107,79,.25);
+      border: 1px solid rgba(47,107,79,.5);
+      color: #b7e0c9;
+      font-size: .9rem;
+    }
+    .form-success.show { display: block; }
+
+    /* ——— Footer ——— */
+    footer {
+      background: #070e16;
+      color: rgba(245,237,211,.55);
+      padding: 2.5rem 0 2rem;
+      font-size: .85rem;
+    }
+    .footer-inner {
+      display: flex; flex-wrap: wrap;
+      justify-content: space-between; align-items: center; gap: 1rem;
+    }
+    .footer-brand {
+      font-family: var(--font-display);
+      color: var(--gold);
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+    .footer-links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+    .footer-links a:hover { color: var(--gold); }
+
+    /* ——— Bottom bar mobile ——— */
+    .mobile-bar {
+      display: none;
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      z-index: 95;
+      padding: .65rem .85rem calc(.65rem + var(--safe-bottom));
+      background: rgba(11, 22, 35, 0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(201, 168, 76, 0.28);
+      gap: .55rem;
+      align-items: stretch;
+      justify-content: space-between;
+    }
+    .mobile-bar a {
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      border-radius: 999px;
+      font-size: .86rem;
+      font-weight: 600;
+      text-align: center;
+      padding: .55rem .7rem;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .mobile-bar .mb-call {
+      color: var(--cream);
+      border: 1px solid rgba(245,237,211,.28);
+      background: transparent;
+    }
+    .mobile-bar .mb-mail {
+      color: var(--navy);
+      background: var(--gold);
+    }
+    .mobile-bar .mb-wa {
+      color: #fff;
+      background: #1FA855;
+    }
+
+    /* App mockups */
+    .app-mock {
+      margin: 0 0 1.15rem;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(201,168,76,.28);
+      background: #0a1220;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.04);
+    }
+    .app-mock-top {
+      display: flex; align-items: center; gap: .35rem;
+      padding: .55rem .7rem;
+      background: rgba(201,168,76,.1);
+      border-bottom: 1px solid rgba(201,168,76,.15);
+    }
+    .app-mock-top i {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: rgba(245,237,211,.35);
+      display: block;
+    }
+    .app-mock-top span {
+      margin-left: auto;
+      font-size: .65rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(245,237,211,.55);
+    }
+    .app-mock-body { padding: .85rem .8rem 1rem; display: grid; gap: .45rem; }
+    .app-mock-body .line {
+      height: 10px; border-radius: 4px;
+      background: linear-gradient(90deg, rgba(201,168,76,.35), rgba(201,168,76,.08));
+    }
+    .app-mock-body .line.short { width: 55%; }
+    .app-mock-body .chip {
+      display: inline-flex; align-items: center;
+      padding: .28rem .55rem; border-radius: 999px;
+      font-size: .68rem; color: var(--navy); background: var(--gold); font-weight: 600; width: fit-content;
+    }
+    .app-mock-body .row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: .4rem;
+    }
+    .app-mock-body .box {
+      height: 42px; border-radius: 8px;
+      border: 1px solid rgba(201,168,76,.22);
+      background: rgba(22,32,51,.8);
+    }
+
+    /* Proof */
+    .proof { background: var(--white); }
+    .proof-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin: 2rem 0 2.25rem;
+    }
+    .proof-stat {
+      padding: 1.1rem 0;
+      border-top: 2px solid var(--gold);
+    }
+    .proof-stat strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 2rem;
+      color: var(--navy);
+      line-height: 1.1;
+    }
+    .proof-stat span { color: var(--muted); font-size: .9rem; font-weight: 300; }
+    .proof-quotes {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+    .proof-quote {
+      padding: 1.25rem 0 0;
+      border-top: 1px solid var(--line);
+    }
+    .proof-quote p {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-style: italic;
+      color: var(--navy);
+      margin-bottom: .55rem;
+    }
+    .proof-quote cite { color: var(--muted); font-size: .85rem; font-style: normal; }
+    .proof-note { margin-top: 1.25rem; color: var(--muted); font-size: .82rem; font-weight: 300; }
+
+    /* FAQ */
+    .faq { background: var(--paper); }
+    .faq-list { margin-top: 2rem; max-width: 760px; display: grid; gap: .65rem; }
+    .faq-item {
+      border: 1px solid var(--line);
+      background: var(--white);
+    }
+    .faq-item summary {
+      cursor: pointer;
+      list-style: none;
+      padding: 1rem 1.1rem;
+      font-weight: 600;
+      color: var(--navy);
+      min-height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after {
+      content: "+";
+      color: var(--gold-deep);
+      font-size: 1.25rem;
+      font-weight: 500;
+    }
+    .faq-item[open] summary::after { content: "–"; }
+    .faq-item p {
+      padding: 0 1.1rem 1.1rem;
+      color: var(--muted);
+      font-weight: 300;
+      font-size: .95rem;
+    }
+
+    .hp-field {
+      position: absolute !important;
+      left: -9999px !important;
+      width: 1px !important;
+      height: 1px !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+    }
+    .consent-row {
+      display: flex;
+      align-items: flex-start;
+      gap: .65rem;
+      margin: .25rem 0 1rem;
+      color: rgba(245,237,211,.8);
+      font-size: .88rem;
+      line-height: 1.45;
+    }
+    .consent-row input {
+      margin-top: .2rem;
+      width: 18px; height: 18px;
+      flex-shrink: 0;
+      accent-color: var(--gold);
+    }
+    .consent-row a { color: var(--gold-light); text-decoration: underline; }
+
+    .wa-float {
+      position: fixed;
+      right: max(1rem, var(--safe-right));
+      bottom: calc(1rem + var(--bottom-bar-h) + var(--safe-bottom));
+      z-index: 96;
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: #1FA855;
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 28px rgba(0,0,0,.28);
+      -webkit-tap-highlight-color: transparent;
+    }
+    .wa-float svg { width: 28px; height: 28px; }
+    .wa-float span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+    .social-row {
+      display: flex; flex-wrap: wrap; gap: .65rem; margin-top: .85rem;
+    }
+    .social-row a {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 40px; padding: .45rem .9rem;
+      border: 1px solid rgba(201,168,76,.35);
+      border-radius: 999px;
+      color: var(--cream);
+      font-size: .82rem;
+      font-weight: 500;
+    }
+    .social-row a.wa { background: #1FA855; border-color: #1FA855; color: #fff; }
+
+    .footer-legal {
+      display: flex; flex-wrap: wrap; gap: .85rem 1.25rem;
+      margin-top: .75rem;
+      width: 100%;
+    }
+    .footer-legal a:hover { color: var(--gold); }
+
+    /* ——— Responsive ——— */
+    @media (max-width: 960px) {
+      .problem-grid,
+      .marketing-intro,
+      .contact-grid { grid-template-columns: 1fr; gap: 1.75rem; }
+      .apps-flow,
+      .benefits-grid,
+      .audience-row,
+      .marketing-pillars,
+      .proof-quotes { grid-template-columns: 1fr 1fr; }
+      .proof-stats { grid-template-columns: 1fr 1fr; }
+      .app-block { border-right: 0; border-bottom: 1px solid rgba(201,168,76,.25); padding: 1.75rem 1.1rem; }
+      .app-block:last-child { border-bottom: 0; }
+      .hero-route { opacity: .22; width: 78vw; top: 12%; }
+      .section-title { max-width: none; }
+    }
+
+    @media (max-width: 820px) {
+      :root {
+        --nav-h: 60px;
+        --bottom-bar-h: calc(64px + env(safe-area-inset-bottom, 0px));
+      }
+      .wrap { width: min(100% - 1.5rem, var(--max)); }
+      .nav-links { display: none; }
+      .nav-tools { display: flex; }
+      .nav-toggle { display: inline-flex; }
+      .nav.open .nav-links {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        position: fixed;
+        top: calc(var(--nav-h) + var(--safe-top));
+        left: 0; right: 0;
+        bottom: 0;
+        z-index: 99;
+        background: rgba(11,22,35,.985);
+        padding: 1rem 1.25rem calc(1.5rem + var(--safe-bottom) + var(--bottom-bar-h));
+        gap: .35rem;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        border-bottom: 0;
+        animation: menuIn .22s ease;
+      }
+      @keyframes menuIn {
+        from { opacity: 0; transform: translateY(-8px); }
+        to { opacity: 1; transform: none; }
+      }
+      .nav.open .nav-links a {
+        width: 100%;
+        min-height: 52px;
+        padding: .9rem 1rem;
+        font-size: 1.05rem;
+        border-bottom: 1px solid rgba(201,168,76,.12);
+        border-radius: 10px;
+      }
+      .nav.open .nav-links a:active,
+      .nav.open .nav-links a:hover {
+        background: rgba(201,168,76,.1);
+        color: var(--gold);
+      }
+      .nav.open .nav-links .nav-cta {
+        margin-top: .75rem;
+        justify-content: center;
+        width: 100%;
+        min-height: 52px;
+        border-radius: 999px;
+        border-bottom: 0;
+        font-size: 1rem;
+      }
+      .nav.open .nav-links .lang { display: none; }
+      .nav-backdrop { pointer-events: auto; }
+      body.menu-open .nav-backdrop { opacity: 1; pointer-events: auto; }
+
+      .mobile-bar { display: flex; }
+
+      .hero {
+        align-items: center;
+        justify-content: end;
+        min-height: 100svh;
+        padding: calc(var(--nav-h) + var(--safe-top) + 1.5rem) 0 5.5rem;
+      }
+      .hero-route { display: none; }
+      .brand-mark { margin-bottom: 1.2rem; }
+      .brand-mark img { width: min(78vw, 240px); }
+      .hero h1 {
+        font-size: clamp(1.85rem, 8.2vw, 2.55rem);
+        max-width: 16ch;
+        margin-bottom: .85rem;
+      }
+      .hero-lead {
+        font-size: 1rem;
+        max-width: none;
+        margin-bottom: 1.4rem;
+        line-height: 1.55;
+      }
+      .hero-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: .7rem;
+        width: 100%;
+      }
+      .hero-actions .btn { width: 100%; }
+
+      section { padding: 3.25rem 0; }
+      .section-kicker { font-size: .68rem; letter-spacing: .16em; }
+      .section-title {
+        font-size: clamp(1.7rem, 7vw, 2.25rem);
+        max-width: none;
+        margin-bottom: .75rem;
+      }
+      .section-lead { font-size: .98rem; max-width: none; }
+
+      .apps-flow,
+      .benefits-grid,
+      .audience-row,
+      .marketing-pillars,
+      .form-row,
+      .proof-stats,
+      .proof-quotes { grid-template-columns: 1fr; }
+
+      .problem-item { padding-left: 1rem; }
+      .problem-item h3 { font-size: 1.2rem; }
+      .problem-panel { min-height: 0; padding: 1.6rem 1.25rem; }
+      .problem-panel .quote { font-size: 1.35rem; }
+
+      .app-num { font-size: 2.1rem; }
+      .app-block h3 { font-size: 1.45rem; }
+      .app-block { padding: 1.5rem 0; }
+      .apps-flow { margin-top: 1.75rem; }
+
+      .pillar { padding-top: 1.1rem; }
+      .pillar h3 { font-size: 1.25rem; }
+
+      .benefits { padding: 2.5rem 0; }
+      .benefit h3 { font-size: 1.2rem; }
+
+      .step {
+        grid-template-columns: 3.2rem 1fr;
+        gap: .85rem;
+        padding: 1.1rem 0;
+      }
+      .step-n { font-size: 1.7rem; }
+      .step h3 { font-size: 1.2rem; }
+
+      .contact-form { padding: 1.2rem; }
+      .contact-line a, .contact-line p { font-size: 1.05rem; word-break: break-word; }
+      .contact-info .btn { width: 100%; }
+
+      footer { padding: 2rem 0 calc(1.5rem + .25rem); font-size: .8rem; }
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: .85rem;
+      }
+      .footer-links {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: .65rem 1rem;
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .nav-brand span { display: none; }
+      .nav-brand img { width: 34px; height: 34px; }
+      .lang button {
+        min-width: 34px;
+        min-height: 36px;
+        padding: .3rem .34rem;
+        font-size: .65rem;
+      }
+      .hero h1 { font-size: clamp(1.7rem, 8.8vw, 2.1rem); }
+      .mobile-bar a { font-size: .8rem; padding: .5rem .45rem; }
+      .footer-links { grid-template-columns: 1fr; }
+      .contact-form { padding: 1rem .9rem; }
+    }
+
+    @media (max-height: 700px) and (max-width: 820px) {
+      .hero {
+        min-height: auto;
+        padding-top: calc(var(--nav-h) + var(--safe-top) + 1.25rem);
+        padding-bottom: 3.5rem;
+      }
+      .brand-mark { margin-bottom: .85rem; }
+      .hero h1 { margin-bottom: .6rem; }
+      .hero-lead { margin-bottom: 1rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .hero-route, .brand-mark, .hero h1, .hero-lead, .hero-actions { animation: none !important; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav" id="nav">
+    <div class="nav-inner">
+      <a class="nav-brand" href="#top" aria-label="Nhalabene">
+        <img src="assets/favicon.svg" alt="" width="36" height="36" />
+        <span>Nhalabene</span>
+      </a>
+      <div class="nav-tools" aria-label="Idioma e menu">
+        <div class="lang lang-mobile" role="group" aria-label="Idioma">
+          <button type="button" class="active" data-lang="pt" title="Portugues (Portugal)">PT</button>
+          <button type="button" data-lang="en" title="English">EN</button>
+          <button type="button" data-lang="fr" title="Francais">FR</button>
+          <button type="button" data-lang="es" title="Espanol">ES</button>
+        </div>
+        <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
+          <svg class="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <nav class="nav-links" id="navLinks" aria-label="Navegação principal">
+        <a href="#offre" data-i18n="nav.offer">A oferta</a>
+        <a href="#applications" data-i18n="nav.apps">Aplicações</a>
+        <a href="#marketing" data-i18n="nav.marketing">Marketing</a>
+        <a href="#demarche" data-i18n="nav.steps">Como funciona</a>
+        <a href="#faq" data-i18n="nav.faq">FAQ</a>
+        <a class="nav-cta" href="#contact" data-i18n="nav.contact">Escrever-nos</a>
+        <div class="lang lang-desktop" role="group" aria-label="Idioma">
+          <button type="button" class="active" data-lang="pt" title="Portugues (Portugal)">PT</button>
+          <button type="button" data-lang="en" title="English">EN</button>
+          <button type="button" data-lang="fr" title="Francais">FR</button>
+          <button type="button" data-lang="es" title="Espanol">ES</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <div class="nav-backdrop" id="navBackdrop" hidden></div>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero" aria-label="Introduction">
+      <div class="hero-pattern" aria-hidden="true"></div>
+      <svg class="hero-route" viewBox="0 0 640 480" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M40 360 C140 340, 180 220, 280 200 C380 180, 420 280, 520 160" stroke="#C9A84C" stroke-width="2" stroke-dasharray="8 10" opacity=".7"/>
+        <circle cx="40" cy="360" r="10" fill="#C9A84C"/>
+        <circle cx="280" cy="200" r="8" fill="#E8C56A"/>
+        <circle cx="520" cy="160" r="12" fill="#C9A84C"/>
+        <rect x="480" y="80" width="100" height="70" rx="8" stroke="#C9A84C" stroke-width="1.5" fill="rgba(22,32,51,.5)"/>
+        <path d="M500 130 h60 M510 115 h40" stroke="#C9A84C" stroke-width="2" opacity=".6"/>
+      </svg>
+      <div class="wrap hero-content">
+        <div class="brand-mark">
+          <img src="assets/logo_horizontal.svg" alt="Nhalabene" />
+        </div>
+        <h1 data-i18n="hero.title">Os transfers do seu hotel, controlados de ponta a ponta</h1>
+        <p class="hero-lead" data-i18n="hero.lead">Uma solução clara para acolher, organizar e valorizar cada trajeto do hóspede — sem perder o controlo nem a imagem do seu estabelecimento.</p>
+        <div class="hero-actions">
+          <a class="btn btn-gold" href="#contact" data-i18n="hero.cta1">Pedir uma demonstração</a>
+          <a class="btn btn-ghost" href="#applications" data-i18n="hero.cta2">Conhecer as aplicações</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- OFFRE / PROBLÈME -->
+    <section class="problem" id="offre">
+      <div class="wrap">
+        <p class="section-kicker reveal" data-i18n="offer.kicker">Para hotéis</p>
+        <h2 class="section-title reveal" data-i18n="offer.title">O transfer deixou de ser um detalhe operacional</h2>
+        <p class="section-lead reveal" data-i18n="offer.lead">É muitas vezes o primeiro contacto físico com a sua marca — e um dos últimos. A Nhalabene transforma-o num serviço fluido, profissional e mensurável.</p>
+        <div class="problem-grid">
+          <div class="problem-list reveal">
+            <div class="problem-item">
+              <h3 data-i18n="offer.p1t">Pedidos dispersos</h3>
+              <p data-i18n="offer.p1d">Mensagens, chamadas e notas espalhadas: informação incompleta, atrasos e uma experiência irregular para o hóspede.</p>
+            </div>
+            <div class="problem-item">
+              <h3 data-i18n="offer.p2t">Carga na receção</h3>
+              <p data-i18n="offer.p2d">A equipa perde demasiado tempo a coordenar, cobrar e confirmar — em detrimento do acolhimento e das vendas.</p>
+            </div>
+            <div class="problem-item">
+              <h3 data-i18n="offer.p3t">Imagem de marca fragmentada</h3>
+              <p data-i18n="offer.p3d">Sem um percurso unificado, o transfer parece improvisado. O hotel perde uma oportunidade de brilhar ainda antes da chegada.</p>
+            </div>
+          </div>
+          <aside class="problem-panel reveal">
+            <p class="quote" data-i18n="offer.quote">« Profissionalizar o transfer é reforçar toda a promessa do hotel. »</p>
+            <p class="quote-sub" data-i18n="offer.quoteSub">A Nhalabene acompanha estabelecimentos que querem um serviço premium, coerente e simples de gerir.</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 APPLICATIONS UNIQUEMENT -->
+    <section class="apps" id="applications">
+      <div class="wrap">
+        <p class="section-kicker reveal" data-i18n="apps.kicker">Três aplicações</p>
+        <h2 class="section-title reveal" data-i18n="apps.title">Todo o percurso, claramente dividido</h2>
+        <p class="section-lead reveal" data-i18n="apps.lead">Formulário do cliente, receção do hotel e administração: três espaços complementares para captar, tratar e gerir os seus transfers.</p>
+        <div class="apps-flow">
+          <article class="app-block reveal">
+            <div class="app-mock" aria-hidden="true">
+              <div class="app-mock-top"><i></i><i></i><i></i><span data-i18n="apps.visual">Pré-visualização</span></div>
+              <div class="app-mock-body">
+                <div class="chip">Formulário</div>
+                <div class="line"></div>
+                <div class="row"><div class="box"></div><div class="box"></div></div>
+                <div class="line short"></div>
+              </div>
+            </div>
+            <div class="app-num">01</div>
+            <h3 data-i18n="apps.f.title">Formulário</h3>
+            <p class="app-role" data-i18n="apps.f.role">Cliente · Concierge</p>
+            <p data-i18n="apps.f.desc">O ponto de entrada dos pedidos: simples, elegante, para web e telemóvel. O hóspede reserva o trajeto em minutos, com toda a informação útil.</p>
+            <ul>
+              <li data-i18n="apps.f.b1">Reserva clara antes ou durante a estadia</li>
+              <li data-i18n="apps.f.b2">Experiência com a identidade do seu hotel</li>
+              <li data-i18n="apps.f.b3">Menos idas e voltas para completar um pedido</li>
+              <li data-i18n="apps.f.b4">Primeira impressão de seriedade e modernidade</li>
+            </ul>
+          </article>
+          <article class="app-block reveal">
+            <div class="app-mock" aria-hidden="true">
+              <div class="app-mock-top"><i></i><i></i><i></i><span data-i18n="apps.visual">Pré-visualização</span></div>
+              <div class="app-mock-body">
+                <div class="chip">Staff</div>
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="row"><div class="box"></div><div class="box"></div></div>
+              </div>
+            </div>
+            <div class="app-num">02</div>
+            <h3 data-i18n="apps.s.title">Staff Receção</h3>
+            <p class="app-role" data-i18n="apps.s.role">Equipa do hotel</p>
+            <p data-i18n="apps.s.desc">O posto de comando diário da receção: acompanhar pedidos, atribuir a parceiros, confirmar e acompanhar o hóspede até à partida.</p>
+            <ul>
+              <li data-i18n="apps.s.b1">Visão geral dos transfers do dia e futuros</li>
+              <li data-i18n="apps.s.b2">Atribuição e seguimento junto das agências</li>
+              <li data-i18n="apps.s.b3">Confirmações e comunicações profissionais</li>
+              <li data-i18n="apps.s.b4">Ganho de tempo e menos erros humanos</li>
+            </ul>
+          </article>
+          <article class="app-block reveal">
+            <div class="app-mock" aria-hidden="true">
+              <div class="app-mock-top"><i></i><i></i><i></i><span data-i18n="apps.visual">Pré-visualização</span></div>
+              <div class="app-mock-body">
+                <div class="chip">Admin</div>
+                <div class="row"><div class="box"></div><div class="box"></div></div>
+                <div class="line"></div>
+                <div class="line short"></div>
+              </div>
+            </div>
+            <div class="app-num">03</div>
+            <h3 data-i18n="apps.a.title">Administração</h3>
+            <p class="app-role" data-i18n="apps.a.role">Direção · Controlo</p>
+            <p data-i18n="apps.a.desc">O controlo estratégico: preços, parceiros, reservas e visão de conjunto para decidir, corrigir e desenvolver o serviço de transfers.</p>
+            <ul>
+              <li data-i18n="apps.a.b1">Gestão de reservas e parceiros</li>
+              <li data-i18n="apps.a.b2">Domínio de preços e regras de negócio</li>
+              <li data-i18n="apps.a.b3">Exportações e leituras para a direção</li>
+              <li data-i18n="apps.a.b4">Coerência e segurança do serviço</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PREUVE SOCIALE -->
+    <section class="proof" id="preuve">
+      <div class="wrap">
+        <p class="section-kicker reveal" data-i18n="proof.kicker">Porquê Nhalabene</p>
+        <h2 class="section-title reveal" data-i18n="proof.title">Pensado para a realidade dos hotéis</h2>
+        <p class="section-lead reveal" data-i18n="proof.lead">Uma oferta clara, multilíngue e centrada na receção — sem promessas vazias.</p>
+        <div class="proof-stats reveal">
+          <div class="proof-stat"><strong data-i18n="proof.s1n">3</strong><span data-i18n="proof.s1l">Aplicações essenciais</span></div>
+          <div class="proof-stat"><strong data-i18n="proof.s2n">4</strong><span data-i18n="proof.s2l">Idiomas do site</span></div>
+          <div class="proof-stat"><strong data-i18n="proof.s3n">15–20</strong><span data-i18n="proof.s3l">Minutos de demonstração</span></div>
+          <div class="proof-stat"><strong data-i18n="proof.s4n">Lisboa</strong><span data-i18n="proof.s4l">Base operacional</span></div>
+        </div>
+        <div class="proof-quotes">
+          <blockquote class="proof-quote reveal">
+            <p data-i18n="proof.q1">« Finalmente um percurso de transfers que a receção consegue seguir sem improvisar. »</p>
+            <cite data-i18n="proof.q1a">— Direção de hotel · Lisboa</cite>
+          </blockquote>
+          <blockquote class="proof-quote reveal">
+            <p data-i18n="proof.q2">« O formulário profissionaliza o primeiro contacto com o hóspede antes da chegada. »</p>
+            <cite data-i18n="proof.q2a">— Chefe de receção · Lisboa</cite>
+          </blockquote>
+        </div>
+        <p class="proof-note reveal" data-i18n="proof.note">Citações ilustrativas do tipo de benefício esperado. A demonstração adapta-se ao seu estabelecimento.</p>
+      </div>
+    </section>
+
+    <!-- MARKETING COMPLET -->
+    <section class="marketing" id="marketing">
+      <div class="wrap">
+        <div class="marketing-intro">
+          <div class="reveal">
+            <p class="section-kicker" data-i18n="mkt.kicker">Marketing hoteleiro</p>
+            <h2 class="section-title" data-i18n="mkt.title">Uma alavanca de marketing completa, não só uma ferramenta operacional</h2>
+          </div>
+          <p class="section-lead reveal" data-i18n="mkt.lead">Cada transfer bem gerido alimenta a sua imagem, as receitas auxiliares e a satisfação do hóspede. A Nhalabene transforma uma necessidade logística numa vantagem comercial duradoura.</p>
+        </div>
+        <div class="marketing-pillars">
+          <div class="pillar reveal">
+            <h3 data-i18n="mkt.p1t">Antes da chegada</h3>
+            <p data-i18n="mkt.p1d">O formulário prolonga a sua marca desde a reserva do trajeto. O hóspede já sente o padrão do hotel — antecipação, clareza, confiança.</p>
+          </div>
+          <div class="pillar reveal">
+            <h3 data-i18n="mkt.p2t">Durante a estadia</h3>
+            <p data-i18n="mkt.p2d">A receção oferece um serviço estruturado: mais vendas de transfers, menos fricção, equipa disponível para hospitalidade e upsell.</p>
+          </div>
+          <div class="pillar reveal">
+            <h3 data-i18n="mkt.p3t">Após a partida</h3>
+            <p data-i18n="mkt.p3d">Uma partida sem stress deixa uma última impressão positiva. Isso influencia avaliações, recomendações e vontade de regressar.</p>
+          </div>
+          <div class="pillar reveal">
+            <h3 data-i18n="mkt.p4t">Diferenciação competitiva</h3>
+            <p data-i18n="mkt.p4d">Num mercado saturado, um percurso de transfer irrepreensível distingue o seu hotel dos que ainda improvisam por mensagem.</p>
+          </div>
+          <div class="pillar reveal">
+            <h3 data-i18n="mkt.p5t">Dados para decidir</h3>
+            <p data-i18n="mkt.p5d">Volumes, parceiros, tendências: a administração dá-lhe uma leitura comercial para ajustar ofertas, preços e parcerias.</p>
+          </div>
+          <div class="pillar reveal">
+            <h3 data-i18n="mkt.p6t">Coerência de marca</h3>
+            <p data-i18n="mkt.p6d">Mensagens, confirmações e percurso alinhados com a identidade do hotel: o transfer torna-se extensão natural da sua promessa premium.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BÉNÉFICES -->
+    <section class="benefits" aria-label="Bénéfices">
+      <div class="wrap">
+        <div class="benefits-grid">
+          <div class="benefit reveal">
+            <h3 data-i18n="ben.1t">Tempo ganho</h3>
+            <p data-i18n="ben.1d">Menos coordenação manual, mais presença junto dos hóspedes.</p>
+          </div>
+          <div class="benefit reveal">
+            <h3 data-i18n="ben.2t">Zero perdas</h3>
+            <p data-i18n="ben.2d">Cada pedido fica centralizado, acompanhado e rastreável até à confirmação.</p>
+          </div>
+          <div class="benefit reveal">
+            <h3 data-i18n="ben.3t">Imagem premium</h3>
+            <p data-i18n="ben.3d">Um serviço digno da sua categoria, visível desde o primeiro contacto.</p>
+          </div>
+          <div class="benefit reveal">
+            <h3 data-i18n="ben.4t">Controlo total</h3>
+            <p data-i18n="ben.4d">Direção e receção mantêm o domínio de preços, parceiros e prioridades.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- POUR QUI -->
+    <section class="audience" id="pour-qui">
+      <div class="wrap">
+        <p class="section-kicker reveal" data-i18n="aud.kicker">Para quem</p>
+        <h2 class="section-title reveal" data-i18n="aud.title">Pensado para as equipas que sustentam a experiência do hóspede</h2>
+        <div class="audience-row">
+          <div class="audience-item reveal">
+            <h3 data-i18n="aud.1t">Receção &amp; Concierge</h3>
+            <p data-i18n="aud.1d">Uma ferramenta diária para tratar depressa, bem e sem stress os pedidos de transfer.</p>
+          </div>
+          <div class="audience-item reveal">
+            <h3 data-i18n="aud.2t">Direção do hotel</h3>
+            <p data-i18n="aud.2d">Visibilidade, domínio comercial e profissionalização de um serviço com forte impacto de imagem.</p>
+          </div>
+          <div class="audience-item reveal">
+            <h3 data-i18n="aud.3t">Clientes &amp; Hóspedes</h3>
+            <p data-i18n="aud.3d">Um percurso simples, tranquilizador, digno de um estabelecimento que cuida de cada detalhe.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DÉMARCHE -->
+    <section class="steps" id="demarche">
+      <div class="wrap">
+        <p class="section-kicker reveal" data-i18n="steps.kicker">Como funciona</p>
+        <h2 class="section-title reveal" data-i18n="steps.title">Da descoberta à entrada em serviço</h2>
+        <p class="section-lead reveal" data-i18n="steps.lead">Uma abordagem clara, respeitadora do ritmo do seu estabelecimento.</p>
+        <div class="steps-list">
+          <div class="step reveal">
+            <div class="step-n">01</div>
+            <div>
+              <h3 data-i18n="steps.1t">Conversa &amp; demonstração</h3>
+              <p data-i18n="steps.1d">15 a 20 minutos para compreender as necessidades e mostrar o percurso Formulário · Staff · Admin.</p>
+            </div>
+          </div>
+          <div class="step reveal">
+            <div class="step-n">02</div>
+            <div>
+              <h3 data-i18n="steps.2t">Adaptação ao seu hotel</h3>
+              <p data-i18n="steps.2d">Identidade visual, preços, parceiros e regras de funcionamento alinhados com o seu estabelecimento.</p>
+            </div>
+          </div>
+          <div class="step reveal">
+            <div class="step-n">03</div>
+            <div>
+              <h3 data-i18n="steps.3t">Adoção pelas equipas</h3>
+              <p data-i18n="steps.3d">Receção e direção assumem rapidamente o controlo — sem mudar a forma como acolhem os hóspedes.</p>
+            </div>
+          </div>
+          <div class="step reveal">
+            <div class="step-n">04</div>
+            <div>
+              <h3 data-i18n="steps.4t">Acompanhamento</h3>
+              <p data-i18n="steps.4d">Permanecemos disponíveis para ajustar, responder e fazer evoluir o serviço consigo.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq" id="faq">
+      <div class="wrap">
+        <p class="section-kicker reveal" data-i18n="faq.kicker">FAQ</p>
+        <h2 class="section-title reveal" data-i18n="faq.title">Perguntas frequentes</h2>
+        <div class="faq-list">
+          <details class="faq-item reveal">
+            <summary data-i18n="faq.q1">Quanto tempo demora a demonstração?</summary>
+            <p data-i18n="faq.a1">Em geral 15 a 20 minutos, presencialmente ou por videoconferência, para mostrar Formulário, Staff e Administração.</p>
+          </details>
+          <details class="faq-item reveal">
+            <summary data-i18n="faq.q2">As aplicações ficam com a identidade do nosso hotel?</summary>
+            <p data-i18n="faq.a2">Sim. A experiência é alinhada com a imagem do seu estabelecimento, para o hóspede e para a equipa.</p>
+          </details>
+          <details class="faq-item reveal">
+            <summary data-i18n="faq.q3">Precisamos de mudar a nossa forma de trabalhar?</summary>
+            <p data-i18n="faq.a3">Não. A solução organiza o que a receção já faz — pedidos, atribuições e confirmações — de forma mais clara.</p>
+          </details>
+          <details class="faq-item reveal">
+            <summary data-i18n="faq.q4">Os nossos dados de contacto estão seguros?</summary>
+            <p data-i18n="faq.a4">Os pedidos do site são tratados conforme a nossa política de privacidade. Pode exercer os seus direitos RGPD a qualquer momento.</p>
+          </details>
+          <details class="faq-item reveal">
+            <summary data-i18n="faq.q5">Como avançamos depois do contacto?</summary>
+            <p data-i18n="faq.a5">Respondemos, marcamos a demonstração e, se fizer sentido, adaptamos a solução ao seu hotel.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+      <div class="wrap">
+        <p class="section-kicker reveal" data-i18n="cta.kicker">Contacto</p>
+        <h2 class="section-title reveal" data-i18n="cta.title">Escreva-nos</h2>
+        <p class="section-lead reveal" data-i18n="cta.lead">Fale-nos do seu hotel. Respondemos para marcar uma demonstração ou esclarecer as suas questões.</p>
+        <div class="contact-grid">
+          <div class="contact-info reveal">
+            <div class="contact-line">
+              <h4 data-i18n="cta.emailLabel">Email</h4>
+              <a href="mailto:nhalabene@gmail.com">nhalabene@gmail.com</a>
+            </div>
+            <div class="contact-line">
+              <h4 data-i18n="cta.phoneLabel">Telefone</h4>
+              <a href="tel:+351920433761">+351 920 433 761</a>
+            </div>
+            <div class="contact-line">
+              <h4 data-i18n="cta.locLabel">Presença</h4>
+              <p data-i18n="cta.loc">Lisboa · Portugal</p>
+            </div>
+            <div class="contact-line">
+              <h4 data-i18n="cta.directLabel">Contacto direto</h4>
+              <p>
+                <a class="btn btn-gold" href="mailto:nhalabene@gmail.com?subject=Pedido%20Nhalabene%20%E2%80%94%20Gest%C3%A3o%20de%20transfers" data-i18n="cta.mailBtn">Abrir o meu cliente de email</a>
+              </p>
+              <div class="social-row">
+                <a class="wa" href="https://wa.me/351920433761" target="_blank" rel="noopener noreferrer" data-i18n="wa.label">WhatsApp</a>
+                <a href="mailto:nhalabene@gmail.com">Email</a>
+                <a href="tel:+351920433761">Tel</a>
+              </div>
+            </div>
+          </div>
+          <form class="contact-form reveal" id="contactForm" novalidate>
+            <div class="hp-field" aria-hidden="true">
+              <label for="website">Website</label>
+              <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+            </div>
+            <div class="form-row">
+              <div class="fg">
+                <label for="name" data-i18n="form.name">O seu nome</label>
+                <input id="name" name="name" type="text" autocomplete="name" required />
+              </div>
+              <div class="fg">
+                <label for="hotel" data-i18n="form.hotel">Hotel / Estabelecimento</label>
+                <input id="hotel" name="hotel" type="text" autocomplete="organization" required />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="fg">
+                <label for="email" data-i18n="form.email">Email</label>
+                <input id="email" name="email" type="email" autocomplete="email" inputmode="email" required />
+              </div>
+              <div class="fg">
+                <label for="phone" data-i18n="form.phone">Telefone</label>
+                <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" />
+              </div>
+            </div>
+            <div class="fg">
+              <label for="interest" data-i18n="form.interest">Assunto</label>
+              <select id="interest" name="interest">
+                <option value="demonstration" data-i18n="form.opt1">Pedido de demonstração</option>
+                <option value="information" data-i18n="form.opt2">Pedido de informação</option>
+                <option value="partenariat" data-i18n="form.opt3">Parceria hotel</option>
+                <option value="autre" data-i18n="form.opt4">Outro</option>
+              </select>
+            </div>
+            <div class="fg">
+              <label for="message" data-i18n="form.message">Mensagem</label>
+              <textarea id="message" name="message" required data-i18n-placeholder="form.ph" placeholder="Descreva brevemente a sua necessidade…"></textarea>
+            </div>
+            <label class="consent-row">
+              <input type="checkbox" id="consent" name="consent" value="1" required />
+              <span><span data-i18n="form.consent">Autorizo a Nhalabene a tratar os meus dados para responder a este pedido, conforme a</span> <a href="privacy.html" target="_blank" rel="noopener" data-i18n="form.privacy">política de privacidade</a>.</span>
+            </label>
+            <button class="btn btn-gold" type="submit" id="formSubmitBtn" data-i18n="form.submit">Enviar pedido</button>
+            <p class="form-note" data-i18n="form.note">O pedido é guardado na nossa base de dados e notifica nhalabene@gmail.com. Também pode escrever-nos diretamente por email.</p>
+            <div class="form-success" id="formSuccess" role="status" data-i18n="form.ok">Pedido enviado com sucesso. Entraremos em contacto em breve.</div>
+            <div class="form-success" id="formError" role="alert" style="display:none;background:rgba(176,0,32,.2);border-color:rgba(176,0,32,.45);color:#ffb4b4"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <div>
+        <div class="footer-brand">Nhalabene</div>
+        <p data-i18n="footer.tag">Gestão profissional de transfers para hotéis</p>
+        <div class="footer-legal">
+          <a href="privacy.html" data-i18n="footer.privacy">Privacidade</a>
+          <a href="terms.html" data-i18n="footer.terms">Termos</a>
+          <a href="https://wa.me/351920433761" target="_blank" rel="noopener noreferrer" data-i18n="wa.label">WhatsApp</a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="mailto:nhalabene@gmail.com">nhalabene@gmail.com</a>
+        <a href="tel:+351920433761">+351 920 433 761</a>
+        <a href="#applications" data-i18n="footer.apps">Aplicações</a>
+        <a href="#contact" data-i18n="footer.contact">Contacto</a>
+        <a href="#faq" data-i18n="nav.faq">FAQ</a>
+      </div>
+      <p>© <span id="year"></span> Nhalabene</p>
+    </div>
+  </footer>
+
+  <a class="wa-float" href="https://wa.me/351920433761?text=Ol%C3%A1%20Nhalabene%2C%20gostaria%20de%20saber%20mais%20sobre%20a%20gest%C3%A3o%20de%20transfers." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    <span data-i18n="wa.label">WhatsApp</span>
+  </a>
+
+  <nav class="mobile-bar" aria-label="Ações rápidas">
+    <a class="mb-call" href="tel:+351920433761" data-i18n="mb.call">Ligar</a>
+    <a class="mb-wa" href="https://wa.me/351920433761" target="_blank" rel="noopener noreferrer" data-i18n="wa.label">WhatsApp</a>
+    <a class="mb-mail" href="#contact" data-i18n="nav.contact">Escrever-nos</a>
+  </nav>
+
+  <script src="assets/config.js"></script>
+  <script src="assets/i18n-extra.js"></script>
+  <script src="assets/site-api.js"></script>
+  <script>
+    const I18N = {
+  "pt": {
+    "nav.offer": "A oferta",
+    "nav.apps": "Aplicações",
+    "nav.marketing": "Marketing",
+    "nav.steps": "Como funciona",
+    "nav.contact": "Escrever-nos",
+    "mb.call": "Ligar",
+    "hero.title": "Os transfers do seu hotel, controlados de ponta a ponta",
+    "hero.lead": "Uma solução clara para acolher, organizar e valorizar cada trajeto do hóspede — sem perder o controlo nem a imagem do seu estabelecimento.",
+    "hero.cta1": "Pedir uma demonstração",
+    "hero.cta2": "Conhecer as aplicações",
+    "offer.kicker": "Para hotéis",
+    "offer.title": "O transfer deixou de ser um detalhe operacional",
+    "offer.lead": "É muitas vezes o primeiro contacto físico com a sua marca — e um dos últimos. A Nhalabene transforma-o num serviço fluido, profissional e mensurável.",
+    "offer.p1t": "Pedidos dispersos",
+    "offer.p1d": "Mensagens, chamadas e notas espalhadas: informação incompleta, atrasos e uma experiência irregular para o hóspede.",
+    "offer.p2t": "Carga na receção",
+    "offer.p2d": "A equipa perde demasiado tempo a coordenar, cobrar e confirmar — em detrimento do acolhimento e das vendas.",
+    "offer.p3t": "Imagem de marca fragmentada",
+    "offer.p3d": "Sem um percurso unificado, o transfer parece improvisado. O hotel perde uma oportunidade de brilhar ainda antes da chegada.",
+    "offer.quote": "« Profissionalizar o transfer é reforçar toda a promessa do hotel. »",
+    "offer.quoteSub": "A Nhalabene acompanha estabelecimentos que querem um serviço premium, coerente e simples de gerir.",
+    "apps.kicker": "Três aplicações",
+    "apps.title": "Todo o percurso, claramente dividido",
+    "apps.lead": "Formulário do cliente, receção do hotel e administração: três espaços complementares para captar, tratar e gerir os seus transfers.",
+    "apps.f.title": "Formulário",
+    "apps.f.role": "Cliente · Concierge",
+    "apps.f.desc": "O ponto de entrada dos pedidos: simples, elegante, para web e telemóvel. O hóspede reserva o trajeto em minutos, com toda a informação útil.",
+    "apps.f.b1": "Reserva clara antes ou durante a estadia",
+    "apps.f.b2": "Experiência com a identidade do seu hotel",
+    "apps.f.b3": "Menos idas e voltas para completar um pedido",
+    "apps.f.b4": "Primeira impressão de seriedade e modernidade",
+    "apps.s.title": "Staff Receção",
+    "apps.s.role": "Equipa do hotel",
+    "apps.s.desc": "O posto de comando diário da receção: acompanhar pedidos, atribuir a parceiros, confirmar e acompanhar o hóspede até à partida.",
+    "apps.s.b1": "Visão geral dos transfers do dia e futuros",
+    "apps.s.b2": "Atribuição e seguimento junto das agências",
+    "apps.s.b3": "Confirmações e comunicações profissionais",
+    "apps.s.b4": "Ganho de tempo e menos erros humanos",
+    "apps.a.title": "Administração",
+    "apps.a.role": "Direção · Controlo",
+    "apps.a.desc": "O controlo estratégico: preços, parceiros, reservas e visão de conjunto para decidir, corrigir e desenvolver o serviço de transfers.",
+    "apps.a.b1": "Gestão de reservas e parceiros",
+    "apps.a.b2": "Domínio de preços e regras de negócio",
+    "apps.a.b3": "Exportações e leituras para a direção",
+    "apps.a.b4": "Coerência e segurança do serviço",
+    "mkt.kicker": "Marketing hoteleiro",
+    "mkt.title": "Uma alavanca de marketing completa, não só uma ferramenta operacional",
+    "mkt.lead": "Cada transfer bem gerido alimenta a sua imagem, as receitas auxiliares e a satisfação do hóspede. A Nhalabene transforma uma necessidade logística numa vantagem comercial duradoura.",
+    "mkt.p1t": "Antes da chegada",
+    "mkt.p1d": "O formulário prolonga a sua marca desde a reserva do trajeto. O hóspede já sente o padrão do hotel — antecipação, clareza, confiança.",
+    "mkt.p2t": "Durante a estadia",
+    "mkt.p2d": "A receção oferece um serviço estruturado: mais vendas de transfers, menos fricção, equipa disponível para hospitalidade e upsell.",
+    "mkt.p3t": "Após a partida",
+    "mkt.p3d": "Uma partida sem stress deixa uma última impressão positiva. Isso influencia avaliações, recomendações e vontade de regressar.",
+    "mkt.p4t": "Diferenciação competitiva",
+    "mkt.p4d": "Num mercado saturado, um percurso de transfer irrepreensível distingue o seu hotel dos que ainda improvisam por mensagem.",
+    "mkt.p5t": "Dados para decidir",
+    "mkt.p5d": "Volumes, parceiros, tendências: a administração dá-lhe uma leitura comercial para ajustar ofertas, preços e parcerias.",
+    "mkt.p6t": "Coerência de marca",
+    "mkt.p6d": "Mensagens, confirmações e percurso alinhados com a identidade do hotel: o transfer torna-se extensão natural da sua promessa premium.",
+    "ben.1t": "Tempo ganho",
+    "ben.1d": "Menos coordenação manual, mais presença junto dos hóspedes.",
+    "ben.2t": "Zero perdas",
+    "ben.2d": "Cada pedido fica centralizado, acompanhado e rastreável até à confirmação.",
+    "ben.3t": "Imagem premium",
+    "ben.3d": "Um serviço digno da sua categoria, visível desde o primeiro contacto.",
+    "ben.4t": "Controlo total",
+    "ben.4d": "Direção e receção mantêm o domínio de preços, parceiros e prioridades.",
+    "aud.kicker": "Para quem",
+    "aud.title": "Pensado para as equipas que sustentam a experiência do hóspede",
+    "aud.1t": "Receção & Concierge",
+    "aud.1d": "Uma ferramenta diária para tratar depressa, bem e sem stress os pedidos de transfer.",
+    "aud.2t": "Direção do hotel",
+    "aud.2d": "Visibilidade, domínio comercial e profissionalização de um serviço com forte impacto de imagem.",
+    "aud.3t": "Clientes & Hóspedes",
+    "aud.3d": "Um percurso simples, tranquilizador, digno de um estabelecimento que cuida de cada detalhe.",
+    "steps.kicker": "Como funciona",
+    "steps.title": "Da descoberta à entrada em serviço",
+    "steps.lead": "Uma abordagem clara, respeitadora do ritmo do seu estabelecimento.",
+    "steps.1t": "Conversa & demonstração",
+    "steps.1d": "15 a 20 minutos para compreender as necessidades e mostrar o percurso Formulário · Staff · Admin.",
+    "steps.2t": "Adaptação ao seu hotel",
+    "steps.2d": "Identidade visual, preços, parceiros e regras de funcionamento alinhados com o seu estabelecimento.",
+    "steps.3t": "Adoção pelas equipas",
+    "steps.3d": "Receção e direção assumem rapidamente o controlo — sem mudar a forma como acolhem os hóspedes.",
+    "steps.4t": "Acompanhamento",
+    "steps.4d": "Permanecemos disponíveis para ajustar, responder e fazer evoluir o serviço consigo.",
+    "cta.kicker": "Contacto",
+    "cta.title": "Escreva-nos",
+    "cta.lead": "Fale-nos do seu hotel. Respondemos para marcar uma demonstração ou esclarecer as suas questões.",
+    "cta.emailLabel": "Email",
+    "cta.phoneLabel": "Telefone",
+    "cta.locLabel": "Presença",
+    "cta.loc": "Lisboa · Portugal",
+    "cta.directLabel": "Contacto direto",
+    "cta.mailBtn": "Abrir o meu cliente de email",
+    "form.name": "O seu nome",
+    "form.hotel": "Hotel / Estabelecimento",
+    "form.email": "Email",
+    "form.phone": "Telefone",
+    "form.interest": "Assunto",
+    "form.opt1": "Pedido de demonstração",
+    "form.opt2": "Pedido de informação",
+    "form.opt3": "Parceria hotel",
+    "form.opt4": "Outro",
+    "form.message": "Mensagem",
+    "form.ph": "Descreva brevemente a sua necessidade…",
+    "form.submit": "Enviar pedido",
+    "form.note": "O pedido é guardado na nossa base de dados e notifica nhalabene@gmail.com. Também pode escrever-nos diretamente por email.",
+    "form.ok": "Pedido enviado com sucesso. Entraremos em contacto em breve.",
+    "form.okMailto": "O seu cliente de email está pronto. Verifique a mensagem e envie-a.",
+    "form.error": "Não foi possível enviar o pedido. Tente novamente ou escreva para nhalabene@gmail.com.",
+    "form.missing": "Preencha os campos obrigatórios.",
+    "form.sending": "A enviar…",
+    "footer.tag": "Gestão profissional de transfers para hotéis",
+    "footer.apps": "Aplicações",
+    "footer.contact": "Contacto",
+    "mail.subject": "Pedido Nhalabene — Gestão de transfers",
+    "mail.bodyIntro": "Olá Nhalabene,",
+    "mail.name": "Nome",
+    "mail.hotel": "Hotel",
+    "mail.email": "Email",
+    "mail.phone": "Telefone",
+    "mail.subjectLine": "Assunto",
+    "mail.message": "Mensagem",
+    "doc.title": "Nhalabene — Gestão de transfers para hotéis",
+    "doc.desc": "Nhalabene — Solução profissional de gestão de transfers para hotéis. Formulário, receção e administração. Contacto: nhalabene@gmail.com"
+  },
+  "en": {
+    "nav.offer": "The offer",
+    "nav.apps": "Applications",
+    "nav.marketing": "Marketing",
+    "nav.steps": "How it works",
+    "nav.contact": "Write to us",
+    "mb.call": "Call",
+    "hero.title": "Your hotel transfers, managed end to end",
+    "hero.lead": "A clear solution to welcome, organise and elevate every guest journey — without losing control or your hotel’s image.",
+    "hero.cta1": "Request a demonstration",
+    "hero.cta2": "Explore the applications",
+    "offer.kicker": "For hotels",
+    "offer.title": "Transfers are no longer an operational detail",
+    "offer.lead": "They are often the first physical contact with your brand — and one of the last. Nhalabene turns them into a smooth, professional and measurable service.",
+    "offer.p1t": "Scattered requests",
+    "offer.p1d": "Messages, calls and notes everywhere: incomplete information, delays, and an inconsistent guest experience.",
+    "offer.p2t": "Front-desk overload",
+    "offer.p2d": "The team spends too much time coordinating, chasing and confirming — at the expense of hospitality and sales.",
+    "offer.p3t": "Fragmented brand image",
+    "offer.p3d": "Without a unified journey, transfers feel improvised. Your hotel misses a chance to shine before arrival.",
+    "offer.quote": "“Professionalising transfers strengthens the entire hotel promise.”",
+    "offer.quoteSub": "Nhalabene supports hotels that want a premium, consistent service that is simple to run.",
+    "apps.kicker": "Three applications",
+    "apps.title": "The full journey, clearly divided",
+    "apps.lead": "Guest form, hotel reception and administration: three complementary spaces to capture, process and manage your transfers.",
+    "apps.f.title": "Form",
+    "apps.f.role": "Guest · Concierge",
+    "apps.f.desc": "The entry point for requests: simple, elegant, ready for web and mobile. Guests book their journey in minutes, with all useful details.",
+    "apps.f.b1": "Clear booking before or during the stay",
+    "apps.f.b2": "Experience aligned with your hotel identity",
+    "apps.f.b3": "Fewer back-and-forths to complete a request",
+    "apps.f.b4": "A first impression of seriousness and modernity",
+    "apps.s.title": "Reception Staff",
+    "apps.s.role": "Hotel team",
+    "apps.s.desc": "The daily command post for reception: track requests, assign partners, confirm and accompany the guest through to departure.",
+    "apps.s.b1": "Overview of today’s and upcoming transfers",
+    "apps.s.b2": "Assignment and follow-up with agencies",
+    "apps.s.b3": "Professional confirmations and communications",
+    "apps.s.b4": "Time saved and fewer human errors",
+    "apps.a.title": "Administration",
+    "apps.a.role": "Management · Control",
+    "apps.a.desc": "Strategic control: pricing, partners, reservations and a full overview to decide, adjust and grow the transfer service.",
+    "apps.a.b1": "Management of reservations and partners",
+    "apps.a.b2": "Control of pricing and business rules",
+    "apps.a.b3": "Exports and insights for management",
+    "apps.a.b4": "Consistency and service security",
+    "mkt.kicker": "Hotel marketing",
+    "mkt.title": "A complete marketing lever, not just an operational tool",
+    "mkt.lead": "Every well-managed transfer strengthens your image, ancillary revenue and guest satisfaction. Nhalabene turns a logistics need into a lasting commercial advantage.",
+    "mkt.p1t": "Before arrival",
+    "mkt.p1d": "The form extends your brand from the moment the journey is booked. Guests already feel your hotel standard — anticipation, clarity, trust.",
+    "mkt.p2t": "During the stay",
+    "mkt.p2d": "Reception offers a structured service: more transfer sales, less friction, a team free for hospitality and upselling.",
+    "mkt.p3t": "After departure",
+    "mkt.p3d": "A stress-free departure leaves a lasting positive impression. It influences reviews, recommendations and the wish to return.",
+    "mkt.p4t": "Competitive differentiation",
+    "mkt.p4d": "In a saturated market, a flawless transfer journey sets your hotel apart from those still improvising over messaging apps.",
+    "mkt.p5t": "Data to decide",
+    "mkt.p5d": "Volumes, partners, trends: administration gives you a commercial reading to adjust offers, pricing and partnerships.",
+    "mkt.p6t": "Brand coherence",
+    "mkt.p6d": "Messages, confirmations and journeys aligned with your hotel identity: transfers become a natural extension of your premium promise.",
+    "ben.1t": "Time saved",
+    "ben.1d": "Less manual coordination, more presence with guests.",
+    "ben.2t": "Zero loss",
+    "ben.2d": "Every request is centralised, tracked and traceable through to confirmation.",
+    "ben.3t": "Premium image",
+    "ben.3d": "A service worthy of your category, visible from the first contact.",
+    "ben.4t": "Full control",
+    "ben.4d": "Management and reception stay in charge of pricing, partners and priorities.",
+    "aud.kicker": "Who it is for",
+    "aud.title": "Built for the teams who carry the guest experience",
+    "aud.1t": "Reception & Concierge",
+    "aud.1d": "A daily tool to handle transfer requests quickly, well and without stress.",
+    "aud.2t": "Hotel management",
+    "aud.2d": "Visibility, commercial control and professionalisation of a high-impact service.",
+    "aud.3t": "Guests & visitors",
+    "aud.3d": "A simple, reassuring journey worthy of a hotel that cares about every detail.",
+    "steps.kicker": "How it works",
+    "steps.title": "From discovery to go-live",
+    "steps.lead": "A clear approach that respects your hotel’s pace.",
+    "steps.1t": "Conversation & demonstration",
+    "steps.1d": "15 to 20 minutes to understand your needs and show the Form · Staff · Admin journey.",
+    "steps.2t": "Adapted to your hotel",
+    "steps.2d": "Visual identity, pricing, partners and operating rules aligned with your property.",
+    "steps.3t": "Team adoption",
+    "steps.3d": "Reception and management quickly take control — without changing how you welcome guests.",
+    "steps.4t": "Ongoing support",
+    "steps.4d": "We remain available to adjust, answer and evolve the service with you.",
+    "cta.kicker": "Contact",
+    "cta.title": "Write to us",
+    "cta.lead": "Tell us about your hotel. We will reply to arrange a demonstration or answer your questions.",
+    "cta.emailLabel": "Email",
+    "cta.phoneLabel": "Phone",
+    "cta.locLabel": "Presence",
+    "cta.loc": "Lisbon · Portugal",
+    "cta.directLabel": "Direct contact",
+    "cta.mailBtn": "Open my email client",
+    "form.name": "Your name",
+    "form.hotel": "Hotel / Property",
+    "form.email": "Email",
+    "form.phone": "Phone",
+    "form.interest": "Subject",
+    "form.opt1": "Demonstration request",
+    "form.opt2": "Information request",
+    "form.opt3": "Hotel partnership",
+    "form.opt4": "Other",
+    "form.message": "Message",
+    "form.ph": "Briefly describe your need…",
+    "form.submit": "Send request",
+    "form.note": "Your request is saved in our database and notifies nhalabene@gmail.com. You can also email us directly.",
+    "form.ok": "Request sent successfully. We will contact you shortly.",
+    "form.okMailto": "Your email client is ready. Check the message, then send it.",
+    "form.error": "Could not send the request. Please try again or email nhalabene@gmail.com.",
+    "form.missing": "Please fill in the required fields.",
+    "form.sending": "Sending…",
+    "footer.tag": "Professional transfer management for hotels",
+    "footer.apps": "Applications",
+    "footer.contact": "Contact",
+    "mail.subject": "Nhalabene enquiry — Transfer management",
+    "mail.bodyIntro": "Hello Nhalabene,",
+    "mail.name": "Name",
+    "mail.hotel": "Hotel",
+    "mail.email": "Email",
+    "mail.phone": "Phone",
+    "mail.subjectLine": "Subject",
+    "mail.message": "Message",
+    "doc.title": "Nhalabene — Transfer management for hotels",
+    "doc.desc": "Nhalabene — Professional transfer management for hotels. Guest form, reception and administration. Contact: nhalabene@gmail.com"
+  },
+  "fr": {
+    "nav.offer": "L’offre",
+    "nav.apps": "Applications",
+    "nav.marketing": "Marketing",
+    "nav.steps": "Démarche",
+    "nav.contact": "Nous écrire",
+    "mb.call": "Appeler",
+    "hero.title": "Les transfers de votre hôtel, maîtrisés de bout en bout",
+    "hero.lead": "Une solution claire pour accueillir, organiser et valoriser chaque trajet client — sans perdre le contrôle ni l’image de votre établissement.",
+    "hero.cta1": "Demander une démonstration",
+    "hero.cta2": "Découvrir les applications",
+    "offer.kicker": "Pour les hôtels",
+    "offer.title": "Le transfer n’est plus un détail opérationnel",
+    "offer.lead": "C’est souvent le premier contact physique avec votre marque — et l’un des derniers. Nhalabene en fait un service fluide, professionnel et mesurable.",
+    "offer.p1t": "Demandes dispersées",
+    "offer.p1d": "Messages, appels et notes éparpillés : informations incomplètes, retards, et expérience client irrégulière.",
+    "offer.p2t": "Charge en réception",
+    "offer.p2d": "L’équipe passe trop de temps à coordonner, relancer et confirmer — au détriment de l’accueil et de la vente.",
+    "offer.p3t": "Image de marque fragmentée",
+    "offer.p3d": "Sans parcours unifié, le transfer paraît improvisé. Votre hôtel perd une occasion de rayonner avant même l’arrivée.",
+    "offer.quote": "« Professionnaliser le transfer, c’est renforcer toute la promesse de l’hôtel. »",
+    "offer.quoteSub": "Nhalabene accompagne les établissements qui veulent un service premium, cohérent et simple à piloter.",
+    "apps.kicker": "Trois applications",
+    "apps.title": "Tout le parcours, clairement réparti",
+    "apps.lead": "Formulaire client, réception hôtel et administration : trois espaces complémentaires pour capturer, traiter et piloter vos transfers.",
+    "apps.f.title": "Formulaire",
+    "apps.f.role": "Client · Conciergerie",
+    "apps.f.desc": "Le point d’entrée des demandes : simple, élégant, adapté au web et au mobile. Le client réserve son trajet en quelques minutes, avec toutes les informations utiles.",
+    "apps.f.b1": "Réservation claire avant ou pendant le séjour",
+    "apps.f.b2": "Expérience à l’identité de votre hôtel",
+    "apps.f.b3": "Moins d’allers-retours pour compléter un dossier",
+    "apps.f.b4": "Première impression de sérieux et de modernité",
+    "apps.s.title": "Staff Réception",
+    "apps.s.role": "Équipe hôtel",
+    "apps.s.desc": "Le poste de commande quotidien de la réception : suivre les demandes, attribuer aux partenaires, confirmer et accompagner le client jusqu’au départ.",
+    "apps.s.b1": "Vue d’ensemble des transfers du jour et à venir",
+    "apps.s.b2": "Attribution et suivi auprès des agences",
+    "apps.s.b3": "Confirmations et communications professionnelles",
+    "apps.s.b4": "Gain de temps et moins d’erreurs humaines",
+    "apps.a.title": "Administration",
+    "apps.a.role": "Direction · Pilotage",
+    "apps.a.desc": "Le contrôle stratégique : tarifs, partenaires, réservations et vision d’ensemble pour décider, corriger et développer le service transfers.",
+    "apps.a.b1": "Pilotage des réservations et des partenaires",
+    "apps.a.b2": "Maîtrise des tarifs et des règles métier",
+    "apps.a.b3": "Exports et lectures pour la direction",
+    "apps.a.b4": "Cohérence et sécurité du service",
+    "mkt.kicker": "Marketing hôtelier",
+    "mkt.title": "Un levier marketing complet, pas seulement un outil métier",
+    "mkt.lead": "Chaque transfer bien géré nourrit votre image, vos revenus annexes et la satisfaction client. Nhalabene transforme un besoin logistique en avantage commercial durable.",
+    "mkt.p1t": "Avant l’arrivée",
+    "mkt.p1d": "Le formulaire prolonge votre marque dès la réservation du trajet. Le client ressent déjà le standard de l’hôtel — anticipation, clarté, confiance.",
+    "mkt.p2t": "Pendant le séjour",
+    "mkt.p2d": "La réception propose un service structuré : plus de ventes de transfers, moins de friction, une équipe disponible pour l’hospitalité et l’upsell.",
+    "mkt.p3t": "Après le départ",
+    "mkt.p3d": "Un départ sans stress laisse une dernière empreinte positive. Cela influence avis, recommandations et intention de revenir.",
+    "mkt.p4t": "Différenciation concurrentielle",
+    "mkt.p4d": "Dans un marché saturé, un parcours transfer irréprochable distingue votre établissement des hôtels qui improvisent encore sur messagerie.",
+    "mkt.p5t": "Données pour décider",
+    "mkt.p5d": "Volumes, partenaires, tendances : l’administration vous donne une lecture commerciale pour ajuster offres, tarifs et partenariats.",
+    "mkt.p6t": "Cohérence de marque",
+    "mkt.p6d": "Messages, confirmations et parcours alignés sur l’identité de l’hôtel : le transfer devient une extension naturelle de votre promesse premium.",
+    "ben.1t": "Temps gagné",
+    "ben.1d": "Moins de coordination manuelle, plus de présence auprès des clients.",
+    "ben.2t": "Zéro perte",
+    "ben.2d": "Chaque demande est centralisée, suivie et traçable jusqu’à la confirmation.",
+    "ben.3t": "Image premium",
+    "ben.3d": "Un service digne de votre catégorie, visible dès le premier contact.",
+    "ben.4t": "Contrôle total",
+    "ben.4d": "Direction et réception restent maîtres des tarifs, partenaires et priorités.",
+    "aud.kicker": "Pour qui",
+    "aud.title": "Conçu pour les équipes qui portent l’expérience client",
+    "aud.1t": "Réception & Conciergerie",
+    "aud.1d": "Un outil quotidien pour traiter vite, bien et sans stress les demandes de transfer.",
+    "aud.2t": "Direction d’hôtel",
+    "aud.2d": "Visibilité, maîtrise commerciale et professionnalisation d’un service à fort impact image.",
+    "aud.3t": "Clients & Hôtes",
+    "aud.3d": "Un parcours simple, rassurant, digne d’un établissement qui soigne chaque détail.",
+    "steps.kicker": "Démarche",
+    "steps.title": "De la découverte à la mise en service",
+    "steps.lead": "Une approche claire, respectueuse du rythme de votre établissement.",
+    "steps.1t": "Échange & démonstration",
+    "steps.1d": "15 à 20 minutes pour comprendre vos besoins et vous montrer le parcours Formulaire · Staff · Admin.",
+    "steps.2t": "Adaptation à votre hôtel",
+    "steps.2d": "Identité visuelle, tarifs, partenaires et règles de fonctionnement alignés sur votre établissement.",
+    "steps.3t": "Prise en main des équipes",
+    "steps.3d": "La réception et la direction prennent rapidement le contrôle — sans changer la façon dont vous accueillez vos clients.",
+    "steps.4t": "Suivi & accompagnement",
+    "steps.4d": "Nous restons disponibles pour ajuster, répondre et faire évoluer le service avec vous.",
+    "cta.kicker": "Contact",
+    "cta.title": "Écrivons-nous",
+    "cta.lead": "Parlez-nous de votre hôtel. Nous vous répondons pour convenir d’une démonstration ou répondre à vos questions.",
+    "cta.emailLabel": "Email",
+    "cta.phoneLabel": "Téléphone",
+    "cta.locLabel": "Présence",
+    "cta.loc": "Lisbonne · Portugal",
+    "cta.directLabel": "Contact direct",
+    "cta.mailBtn": "Ouvrir mon client email",
+    "form.name": "Votre nom",
+    "form.hotel": "Hôtel / Établissement",
+    "form.email": "Email",
+    "form.phone": "Téléphone",
+    "form.interest": "Sujet",
+    "form.opt1": "Demande de démonstration",
+    "form.opt2": "Demande d’information",
+    "form.opt3": "Partenariat hôtel",
+    "form.opt4": "Autre",
+    "form.message": "Message",
+    "form.ph": "Présentez brièvement votre besoin…",
+    "form.submit": "Envoyer la demande",
+    "form.note": "La demande est enregistrée dans notre base de données et notifie nhalabene@gmail.com. Vous pouvez aussi nous écrire directement.",
+    "form.ok": "Demande envoyée avec succès. Nous vous contactons rapidement.",
+    "form.okMailto": "Votre client email est prêt. Vérifiez le message puis envoyez-le.",
+    "form.error": "Impossible d’envoyer la demande. Réessayez ou écrivez à nhalabene@gmail.com.",
+    "form.missing": "Veuillez remplir les champs obligatoires.",
+    "form.sending": "Envoi…",
+    "footer.tag": "Gestion professionnelle des transfers pour hôtels",
+    "footer.apps": "Applications",
+    "footer.contact": "Contact",
+    "mail.subject": "Demande Nhalabene — Gestion des transfers",
+    "mail.bodyIntro": "Bonjour Nhalabene,",
+    "mail.name": "Nom",
+    "mail.hotel": "Hôtel",
+    "mail.email": "Email",
+    "mail.phone": "Téléphone",
+    "mail.subjectLine": "Sujet",
+    "mail.message": "Message",
+    "doc.title": "Nhalabene — Gestion des transfers pour hôtels",
+    "doc.desc": "Nhalabene — Solution professionnelle de gestion des transfers pour hôtels. Formulaire client, réception et administration. Contact : nhalabene@gmail.com"
+  },
+  "es": {
+    "nav.offer": "La oferta",
+    "nav.apps": "Aplicaciones",
+    "nav.marketing": "Marketing",
+    "nav.steps": "Cómo funciona",
+    "nav.contact": "Escríbanos",
+    "mb.call": "Llamar",
+    "hero.title": "Los transfers de su hotel, controlados de principio a fin",
+    "hero.lead": "Una solución clara para acoger, organizar y valorizar cada trayecto del huésped — sin perder el control ni la imagen de su establecimiento.",
+    "hero.cta1": "Solicitar una demostración",
+    "hero.cta2": "Conocer las aplicaciones",
+    "offer.kicker": "Para hoteles",
+    "offer.title": "El transfer ya no es un detalle operativo",
+    "offer.lead": "A menudo es el primer contacto físico con su marca — y uno de los últimos. Nhalabene lo convierte en un servicio fluido, profesional y medible.",
+    "offer.p1t": "Solicitudes dispersas",
+    "offer.p1d": "Mensajes, llamadas y notas repartidas: información incompleta, retrasos y una experiencia irregular para el huésped.",
+    "offer.p2t": "Carga en recepción",
+    "offer.p2d": "El equipo dedica demasiado tiempo a coordinar, insistir y confirmar — en detrimento de la acogida y las ventas.",
+    "offer.p3t": "Imagen de marca fragmentada",
+    "offer.p3d": "Sin un recorrido unificado, el transfer parece improvisado. Su hotel pierde una oportunidad de brillar incluso antes de la llegada.",
+    "offer.quote": "« Profesionalizar el transfer es reforzar toda la promesa del hotel. »",
+    "offer.quoteSub": "Nhalabene acompaña a establecimientos que quieren un servicio premium, coherente y sencillo de gestionar.",
+    "apps.kicker": "Tres aplicaciones",
+    "apps.title": "Todo el recorrido, claramente repartido",
+    "apps.lead": "Formulario del cliente, recepción del hotel y administración: tres espacios complementarios para captar, tratar y gestionar sus transfers.",
+    "apps.f.title": "Formulario",
+    "apps.f.role": "Cliente · Conserjería",
+    "apps.f.desc": "El punto de entrada de las solicitudes: sencillo, elegante, para web y móvil. El huésped reserva su trayecto en minutos, con toda la información útil.",
+    "apps.f.b1": "Reserva clara antes o durante la estancia",
+    "apps.f.b2": "Experiencia con la identidad de su hotel",
+    "apps.f.b3": "Menos idas y vueltas para completar una solicitud",
+    "apps.f.b4": "Primera impresión de seriedad y modernidad",
+    "apps.s.title": "Staff Recepción",
+    "apps.s.role": "Equipo del hotel",
+    "apps.s.desc": "El puesto de mando diario de la recepción: seguir solicitudes, asignar a socios, confirmar y acompañar al huésped hasta la salida.",
+    "apps.s.b1": "Visión general de los transfers del día y futuros",
+    "apps.s.b2": "Asignación y seguimiento con las agencias",
+    "apps.s.b3": "Confirmaciones y comunicaciones profesionales",
+    "apps.s.b4": "Ahorro de tiempo y menos errores humanos",
+    "apps.a.title": "Administración",
+    "apps.a.role": "Dirección · Control",
+    "apps.a.desc": "El control estratégico: tarifas, socios, reservas y visión de conjunto para decidir, corregir y desarrollar el servicio de transfers.",
+    "apps.a.b1": "Gestión de reservas y socios",
+    "apps.a.b2": "Dominio de tarifas y reglas de negocio",
+    "apps.a.b3": "Exportaciones y lecturas para la dirección",
+    "apps.a.b4": "Coherencia y seguridad del servicio",
+    "mkt.kicker": "Marketing hotelero",
+    "mkt.title": "Una palanca de marketing completa, no solo una herramienta operativa",
+    "mkt.lead": "Cada transfer bien gestionado alimenta su imagen, los ingresos auxiliares y la satisfacción del huésped. Nhalabene transforma una necesidad logística en una ventaja comercial duradera.",
+    "mkt.p1t": "Antes de la llegada",
+    "mkt.p1d": "El formulario prolonga su marca desde la reserva del trayecto. El huésped ya siente el estándar del hotel: anticipación, claridad, confianza.",
+    "mkt.p2t": "Durante la estancia",
+    "mkt.p2d": "La recepción ofrece un servicio estructurado: más ventas de transfers, menos fricción, un equipo disponible para la hospitalidad y el upsell.",
+    "mkt.p3t": "Después de la salida",
+    "mkt.p3d": "Una salida sin estrés deja una última impresión positiva. Influye en opiniones, recomendaciones y la intención de volver.",
+    "mkt.p4t": "Diferenciación competitiva",
+    "mkt.p4d": "En un mercado saturado, un recorrido de transfer impecable distingue a su hotel de quienes aún improvisan por mensajería.",
+    "mkt.p5t": "Datos para decidir",
+    "mkt.p5d": "Volúmenes, socios, tendencias: la administración le ofrece una lectura comercial para ajustar ofertas, tarifas y alianzas.",
+    "mkt.p6t": "Coherencia de marca",
+    "mkt.p6d": "Mensajes, confirmaciones y recorrido alineados con la identidad del hotel: el transfer se convierte en una extensión natural de su promesa premium.",
+    "ben.1t": "Tiempo ganado",
+    "ben.1d": "Menos coordinación manual, más presencia con los huéspedes.",
+    "ben.2t": "Cero pérdidas",
+    "ben.2d": "Cada solicitud queda centralizada, seguida y rastreable hasta la confirmación.",
+    "ben.3t": "Imagen premium",
+    "ben.3d": "Un servicio digno de su categoría, visible desde el primer contacto.",
+    "ben.4t": "Control total",
+    "ben.4d": "Dirección y recepción mantienen el dominio de tarifas, socios y prioridades.",
+    "aud.kicker": "Para quién",
+    "aud.title": "Pensado para los equipos que sostienen la experiencia del huésped",
+    "aud.1t": "Recepción & Conserjería",
+    "aud.1d": "Una herramienta diaria para tratar rápido, bien y sin estrés las solicitudes de transfer.",
+    "aud.2t": "Dirección del hotel",
+    "aud.2d": "Visibilidad, dominio comercial y profesionalización de un servicio de alto impacto de imagen.",
+    "aud.3t": "Clientes & Huéspedes",
+    "aud.3d": "Un recorrido sencillo y tranquilizador, digno de un establecimiento que cuida cada detalle.",
+    "steps.kicker": "Cómo funciona",
+    "steps.title": "Del descubrimiento a la puesta en marcha",
+    "steps.lead": "Un enfoque claro, respetuoso con el ritmo de su establecimiento.",
+    "steps.1t": "Conversación & demostración",
+    "steps.1d": "15 a 20 minutos para comprender sus necesidades y mostrar el recorrido Formulario · Staff · Admin.",
+    "steps.2t": "Adaptación a su hotel",
+    "steps.2d": "Identidad visual, tarifas, socios y reglas de funcionamiento alineados con su establecimiento.",
+    "steps.3t": "Adopción por los equipos",
+    "steps.3d": "Recepción y dirección asumen rápidamente el control — sin cambiar la forma en que reciben a los huéspedes.",
+    "steps.4t": "Acompañamiento",
+    "steps.4d": "Permanecemos disponibles para ajustar, responder y hacer evolucionar el servicio con usted.",
+    "cta.kicker": "Contacto",
+    "cta.title": "Escríbanos",
+    "cta.lead": "Háblenos de su hotel. Le responderemos para concertar una demostración o aclarar sus preguntas.",
+    "cta.emailLabel": "Email",
+    "cta.phoneLabel": "Teléfono",
+    "cta.locLabel": "Presencia",
+    "cta.loc": "Lisboa · Portugal",
+    "cta.directLabel": "Contacto directo",
+    "cta.mailBtn": "Abrir mi cliente de email",
+    "form.name": "Su nombre",
+    "form.hotel": "Hotel / Establecimiento",
+    "form.email": "Email",
+    "form.phone": "Teléfono",
+    "form.interest": "Asunto",
+    "form.opt1": "Solicitud de demostración",
+    "form.opt2": "Solicitud de información",
+    "form.opt3": "Colaboración hotel",
+    "form.opt4": "Otro",
+    "form.message": "Mensaje",
+    "form.ph": "Describa brevemente su necesidad…",
+    "form.submit": "Enviar solicitud",
+    "form.note": "La solicitud se guarda en nuestra base de datos y notifica a nhalabene@gmail.com. También puede escribirnos por email.",
+    "form.ok": "Solicitud enviada con éxito. Nos pondremos en contacto pronto.",
+    "form.okMailto": "Su cliente de email está listo. Revise el mensaje y envíelo.",
+    "form.error": "No se pudo enviar la solicitud. Inténtelo de nuevo o escriba a nhalabene@gmail.com.",
+    "form.missing": "Complete los campos obligatorios.",
+    "form.sending": "Enviando…",
+    "footer.tag": "Gestión profesional de transfers para hoteles",
+    "footer.apps": "Aplicaciones",
+    "footer.contact": "Contacto",
+    "mail.subject": "Consulta Nhalabene — Gestión de transfers",
+    "mail.bodyIntro": "Hola Nhalabene,",
+    "mail.name": "Nombre",
+    "mail.hotel": "Hotel",
+    "mail.email": "Email",
+    "mail.phone": "Teléfono",
+    "mail.subjectLine": "Asunto",
+    "mail.message": "Mensaje",
+    "doc.title": "Nhalabene — Gestión de transfers para hoteles",
+    "doc.desc": "Nhalabene — Solución profesional de gestión de transfers para hoteles. Formulario, recepción y administración. Contacto: nhalabene@gmail.com"
+  }
+}
+;
+
+    if (window.I18N_EXTRA) {
+      Object.keys(I18N_EXTRA).forEach((l) => {
+        I18N[l] = Object.assign({}, I18N[l] || {}, I18N_EXTRA[l]);
+      });
+    }
+
+    const LANG_ATTR = { pt: 'pt-PT', en: 'en', fr: 'fr', es: 'es' };
+    let lang = 'pt';
+
+    function t(key) {
+      return (I18N[lang] && I18N[lang][key]) || I18N.pt[key] || key;
+    }
+
+    function isValidEmail(v) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
+    }
+    function isValidPhone(v) {
+      if (!v) return true;
+      return /^[\d\s+\-().]{6,24}$/.test(v);
+    }
+
+    function updateFaqLd() {
+      const el = document.getElementById('faqLdJson');
+      if (!el) return;
+      const items = [];
+      document.querySelectorAll('#faq .faq-item').forEach((d) => {
+        const q = d.querySelector('summary');
+        const a = d.querySelector('p');
+        if (!q || !a) return;
+        items.push({
+          '@type': 'Question',
+          name: q.textContent.trim(),
+          acceptedAnswer: { '@type': 'Answer', text: a.textContent.trim() }
+        });
+      });
+      el.textContent = JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: items
+      });
+    }
+
+    function applyI18n() {
+      document.documentElement.lang = LANG_ATTR[lang] || lang;
+      window.NH = window.NH || {};
+      window.NH.lang = lang;
+      document.title = t('doc.title');
+      const meta = document.querySelector('meta[name="description"]');
+      if (meta) meta.setAttribute('content', t('doc.desc'));
+      const ogTitle = document.querySelector('meta[property="og:title"]');
+      const ogDesc = document.querySelector('meta[property="og:description"]');
+      if (ogTitle) ogTitle.setAttribute('content', t('doc.title'));
+      if (ogDesc) ogDesc.setAttribute('content', t('doc.desc'));
+      document.querySelectorAll('[data-i18n]').forEach((el) => {
+        const key = el.getAttribute('data-i18n');
+        if (I18N[lang][key] != null) el.textContent = I18N[lang][key];
+      });
+      document.querySelectorAll('[data-i18n-placeholder]').forEach((el) => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (I18N[lang][key] != null) el.setAttribute('placeholder', I18N[lang][key]);
+      });
+      document.querySelectorAll('.lang button').forEach((btn) => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+      });
+      try { localStorage.setItem('nhalabene-lang', lang); } catch (e) {}
+      updateFaqLd();
+    }
+
+    try {
+      const saved = localStorage.getItem('nhalabene-lang');
+      if (saved && I18N[saved]) lang = saved;
+    } catch (e) {}
+
+    document.querySelectorAll('.lang button').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        lang = btn.dataset.lang;
+        applyI18n();
+        if (window.NH_API) NH_API.onLangChange(lang);
+      });
+    });
+
+    const nav = document.getElementById('nav');
+    const navToggle = document.getElementById('navToggle');
+    const navBackdrop = document.getElementById('navBackdrop');
+
+    function setMenu(open) {
+      nav.classList.toggle('open', open);
+      document.body.classList.toggle('menu-open', open);
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (navBackdrop) {
+        if (open) navBackdrop.removeAttribute('hidden');
+        else navBackdrop.setAttribute('hidden', '');
+      }
+    }
+
+    navToggle.addEventListener('click', () => {
+      setMenu(!nav.classList.contains('open'));
+    });
+    if (navBackdrop) {
+      navBackdrop.addEventListener('click', () => setMenu(false));
+    }
+    document.getElementById('navLinks').addEventListener('click', (e) => {
+      if (e.target.closest('a')) setMenu(false);
+    });
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') setMenu(false);
+    });
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 820) setMenu(false);
+    });
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+    }, { passive: true });
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => { if (en.isIntersecting) en.target.classList.add('in'); });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    function showFormMsg(ok, text) {
+      const okEl = document.getElementById('formSuccess');
+      const errEl = document.getElementById('formError');
+      okEl.classList.remove('show');
+      errEl.style.display = 'none';
+      if (ok) {
+        if (text) okEl.textContent = text;
+        okEl.classList.add('show');
+      } else {
+        errEl.textContent = text || t('form.error');
+        errEl.style.display = 'block';
+      }
+    }
+
+    document.getElementById('contactForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const hotel = document.getElementById('hotel').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const interest = document.getElementById('interest');
+      const interestLabel = interest.options[interest.selectedIndex].text;
+      const message = document.getElementById('message').value.trim();
+      const consent = document.getElementById('consent').checked;
+      const honeypot = document.getElementById('website').value.trim();
+
+      if (honeypot) {
+        showFormMsg(true, t('form.ok'));
+        return;
+      }
+      if (!name || !hotel || !email || !message) {
+        showFormMsg(false, t('form.missing'));
+        return;
+      }
+      if (!isValidEmail(email)) {
+        showFormMsg(false, t('form.emailErr'));
+        return;
+      }
+      if (!isValidPhone(phone)) {
+        showFormMsg(false, t('form.phoneErr'));
+        return;
+      }
+      if (!consent) {
+        showFormMsg(false, t('form.consentErr'));
+        return;
+      }
+
+      const btn = document.getElementById('formSubmitBtn');
+      const prev = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = t('form.sending');
+
+      const fields = {
+        name, hotel, email, phone,
+        subject: interest.value,
+        subjectLabel: interestLabel,
+        message,
+        consent: true,
+        honeypot: ''
+      };
+
+      try {
+        if (window.NH_API && NH_API.configured()) {
+          const res = await NH_API.sendContact(fields);
+          if (res && res.success) {
+            showFormMsg(true, t('form.okConfirm'));
+            document.getElementById('contactForm').reset();
+            NH_API.event('form_submit_ok', interest.value, hotel);
+          } else {
+            throw new Error((res && res.error) || t('form.error'));
+          }
+        } else {
+          const subject = t('mail.subject') + ' — ' + hotel;
+          const body = [
+            t('mail.bodyIntro'), '',
+            t('mail.name') + ' : ' + name,
+            t('mail.hotel') + ' : ' + hotel,
+            t('mail.email') + ' : ' + email,
+            t('mail.phone') + ' : ' + (phone || '—'),
+            t('mail.subjectLine') + ' : ' + interestLabel,
+            '', t('mail.message') + ' :', message,
+            '', 'RGPD consent: yes'
+          ].join('\n');
+          window.location.href = 'mailto:nhalabene@gmail.com'
+            + '?subject=' + encodeURIComponent(subject)
+            + '&body=' + encodeURIComponent(body);
+          showFormMsg(true, t('form.okMailto'));
+        }
+      } catch (err) {
+        showFormMsg(false, err.message || t('form.error'));
+      } finally {
+        btn.disabled = false;
+        btn.textContent = prev;
+      }
+    });
+
+    applyI18n();
+    if (window.NH_API) NH_API.init();
+  </script>
+</body>
+</html>
